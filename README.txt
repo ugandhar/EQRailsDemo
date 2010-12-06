@@ -1,0 +1,1 @@
+This is a Rails application for testing and demoing an EQ editing interface.
