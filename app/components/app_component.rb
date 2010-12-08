@@ -38,31 +38,18 @@ class AppComponent < Netzke::Base
             </div>
           }
         },{
+          :id => 'app-panel',
           :region => 'center',
           :layout => 'border',
           :items => [
             {
               :id => 'main-panel',
               :region => 'center',
-              :layout => 'fit'
+              :layout => 'fit',
             },{
-              :xtype => 'treepanel',
+              :class_name => 'NavTreePanelComponent',
               :region => 'west',
-              :width => 150,
-              :root => {
-                text: "Records",
-                children: [
-                  { text: "Characters",
-                    leaf: true
-                  },
-                  { text: "States",
-                    leaf: true
-                  }
-              ]
-              },
-              listeners: {
-                click: { fn: js_method(:on_click) }
-              }
+              :width => 150
             },{
               :id => 'main-statusbar',
               :xtype => 'statusbar',
@@ -81,7 +68,7 @@ class AppComponent < Netzke::Base
   
   js_method :init_component
 
-  js_method :process_history
+  #js_method :process_history
 
   js_method :instantiate_component
 
@@ -90,8 +77,6 @@ class AppComponent < Netzke::Base
   js_method :load_component_by_action
 
   js_method :on_toggle_config_mode
-
-  js_method :on_click
 
   js_method :load_view
 

@@ -20,8 +20,11 @@ module ComponentExt
 
         def parse_js_methods_file
           @js_methods = {}
-          js_text = File.open("app/components/#{self.to_s.underscore.pluralize}/functions.js", 'r').read
-          parse_js_methods js_text
+          file_name = "app/components/#{self.to_s.underscore.pluralize}/functions.js"
+          if(File.exists?(file_name))
+            js_text = File.open(file_name, 'r').read
+            parse_js_methods js_text
+          end
         end
 
         def parse_js_methods js_text
