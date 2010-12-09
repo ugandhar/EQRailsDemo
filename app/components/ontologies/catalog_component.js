@@ -4,6 +4,7 @@ Component('Ontologies.CatalogComponent', {
   kindOf: CatalogComponent,
   config: {
     model: 'Ontology',
+    dataURI: '/ontologies',
     columns: [
       'name',
       { header: 'URI', dataIndex: 'uri' }

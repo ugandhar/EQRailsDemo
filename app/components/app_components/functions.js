@@ -71,14 +71,15 @@ root.AppComponent.Functions = {
   // START JS METHOD
   loadView: function (path) {
     var me = this;
-    var splitPath = path.slice(1).split('/');
-    var evenPath = splitPath.reject(function (res, i) { return (i % 2 == 1) });
+    var route = Route.fromPath(path);
+//    var splitPath = path.slice(1).split('/');
+//    var evenPath = splitPath.reject(function (res, i) { return (i % 2 == 1) });
     var mod =
-      evenPath.inject(root, function (module, str) {
-        return ((module && module[str.capitalize()]) || null);
+      route.controller.split('/').inject(root, function (module, part) {
+        return ((module && module[part.camelize()]) || null);
       });
-    var action = path.match(/\/\d+$/) ? 'Show' : 'Index'
-    var view = mod && mod[action];
+    var action = route.action;
+    var view = mod && mod[action.capitalize()];
     if (view) {
       var mainPanel = root.APP.getComponent('app-panel').getComponent('main-panel');
       mainPanel.removeAll(true);

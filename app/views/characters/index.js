@@ -1,8 +1,8 @@
-require ('/characters/grid_panel_component')
+require ('/characters/catalog_component')
 
 View('Characters.Index', {
   components: {
-    xtype: 'characters/grid_panel_component'
+    xtype: 'characters/catalog_component'
   }
 });
 

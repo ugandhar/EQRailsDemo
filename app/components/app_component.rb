@@ -49,7 +49,7 @@ class AppComponent < Netzke::Base
             },{
               :class_name => 'NavTreePanelComponent',
               :region => 'west',
-              :width => 150
+              :width => 250
             },{
               :id => 'main-statusbar',
               :xtype => 'statusbar',

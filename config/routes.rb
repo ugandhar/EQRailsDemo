@@ -3,7 +3,9 @@ RubyPhenex::Application.routes.draw do
   root to: "home#show"
 
   resources :characters do
-    resources :states, controller: 'characters/states'
+    resources :states, controller: 'characters/states' do
+      resources :phenotypes
+    end
   end
 
   resources :ontologies

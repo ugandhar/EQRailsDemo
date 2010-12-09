@@ -16,6 +16,14 @@ String.prototype.pluralize = function () {
   return pluralized;
 }
 
+String.prototype.singularize = function () {
+  var singularized;
+  if (this.match(/s$/)) {
+    singularized = this.slice(0, -1);
+  }
+  return singularized;
+}
+
 function Component (fullName, options) {
   var nameArr = fullName.split('.')
   var lastName = nameArr.pop();
@@ -31,7 +39,6 @@ function Component (fullName, options) {
     if (options.constructor) {
       options.constructor.call(this, Object.extend(config, arguments[0]));
     }
-    debugger;
     module[lastName].superclass.constructor.apply(this, arguments);
   };
   Ext.extend(newComponent, options.kindOf);
@@ -46,6 +53,33 @@ function View (fullName, options) {
     nameArr.inject(root, function (module, name) {
       return (module[name] || (module[name] = {}));
     });
-  options['view_name'] = fullName;
+  options.viewName = fullName;
   module[lastName] = options
+}
+
+Route = {
+  fromPath: function (path) {
+    var splitPath =
+      path.
+        sub(/^\//, '').
+        split('/');
+    var route =
+      splitPath.
+//        reject(function (part, i) { return (i % 2 == 1) }).
+        inject(Routes.PATHS_TO_ROUTES, function (acc, part, i) {
+          return (
+            part.match(/^\d+$/) ?
+              i == (splitPath.size() - 1)? // is last in array
+                acc[':id'] :
+                acc[':'+splitPath[i-1].singularize()+'_id'] :
+              acc[part]
+          )
+        });
+    return route;
+  },
+
+  fromControllerAction: function (controller, action) {
+    return (Routes.CONTROLLERS_ACTIONS_TO_ROUTES[controller][action])
+  }
+  
 }
