@@ -6,14 +6,23 @@ class NavTreePanelComponent < Netzke::Base
   config do
     {
       header: false,
+      rootVisible: false,
       root: {
         text: "Records",
+        id: "records",
+        hidden: true,
         children: [
           { text: "Characters",
-            leaf: true
-          },
-          { text: "States",
-            leaf: true
+            id: "/characters",
+            children: [
+              { text: '', hidden: true }
+            ]
+          }, {
+            text: "Ontologies",
+            id: "/ontologies",
+            children: [
+              { text: '', hidden: true }
+            ]
           }
         ]
       },
@@ -22,6 +31,8 @@ class NavTreePanelComponent < Netzke::Base
       }
     }
   end
+
+  js_method :init_component
 
   js_method :on_click
 end

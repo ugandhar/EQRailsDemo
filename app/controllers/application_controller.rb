@@ -5,12 +5,18 @@ class ApplicationController < ActionController::Base
 
   def render options = {}
     if(options[:js])
-      f = File.read("app/views/characters/#{options[:js]}.js")
-      f.sub!(/require \(['"][\w\/]+['"]\)/, File.read('app/components/characters/grid_panel_component.js'))
-      render text: f
+      render text: concat_js("app/views/#{self.class.to_s.underscore.sub('_controller', '')}/#{options[:js]}.js")      
     else
       super
     end
+  end
+
+  def concat_js filename
+    f = File.read(filename)
+    f.sub!(/require \(['"]([\w\/]+)['"]\)/) do
+      concat_js("app/components/#{$1}.js")
+    end
+    f
   end
 
   def rescue_action exception

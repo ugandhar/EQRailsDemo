@@ -1,20 +1,18 @@
-Component('Characters.GridPanelComponent', {
+Component('Characters.States.GridPanelComponent', {
   kindOf: Ext.grid.GridPanel,
   config: {
     store: new Ext.data.JsonStore({
       autoDestroy: true,
-      root: 'characters',
-      idProperty: 'character_id',
+      root: 'states',
+      idProperty: 'state_id',
       fields: [
-        'character_id', 'name'
+        'state_id', 'name'
       ],
       data: {
-        characters: [
-          { id: 1, name: 'chr1' },
-          { id: 2, name: 'chr2' },
-          { id: 3, name: 'chr3' },
-          { id: 4, name: 'chr4' },
-          { id: 5, name: 'chr5' }
+        states: [
+          { state_id: 1, name: 'state1' },
+          { state_id: 2, name: 'state2' },
+          { state_id: 3, name: 'state3' }
         ]
       }
     }),
@@ -31,11 +29,11 @@ Component('Characters.GridPanelComponent', {
       forceFit: true
     },
     sm: new Ext.grid.RowSelectionModel({ singleSelect: true }),
-    title: 'Characters'
+    title: 'States'
   },
   listeners: {
     click: function () {
-      APP.loadView('/characters/1');
+      APP.loadView('/characters/1/states/1');
     }
   }
 });

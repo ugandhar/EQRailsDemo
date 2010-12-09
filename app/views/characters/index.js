@@ -1,4 +1,4 @@
-require ('characters/grid_panel_component')
+require ('/characters/grid_panel_component')
 
 View('Characters.Index', {
   components: {

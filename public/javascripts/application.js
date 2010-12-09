@@ -5,30 +5,47 @@ String.prototype.slashify = function () {
   return (str.underscore());
 }
 
-function Component (full_name, options) {
-  var name_arr = full_name.split('.')
-  var last_name = name_arr.pop();
-  var module =
-    name_arr.inject(root, function (module, name) {
-      return (module[name] || (module[name] = {}));
-    });
-  var config = Object.extend(options.config, { listeners: options.listeners });
-  var copy = Ext.extend(options.kind_of, {
-    initComponent: function () {
-      Ext.apply(this, config);
-      module[last_name].superclass.initComponent.apply(this, arguments);
-    }
-  });
-  module[last_name] = copy;
-  Ext.reg(full_name.slashify(), module[last_name]);
+String.prototype.pluralize = function () {
+  var pluralized;
+  if (this.match(/y$/)) {
+    pluralized = this.slice(0, -1)+'ies';
+  } else {
+    pluralized = this+'s';
+  }
+
+  return pluralized;
 }
 
-function View (full_name, options) {
-  var name_arr = full_name.split('.')
-  var last_name = name_arr.pop();
+function Component (fullName, options) {
+  var nameArr = fullName.split('.')
+  var lastName = nameArr.pop();
   var module =
-    name_arr.inject(root, function (module, name) {
+    nameArr.inject(root, function (module, name) {
       return (module[name] || (module[name] = {}));
     });
-  module[last_name] = options
+  var config = Object.extend(options.config, { 
+    listeners: options.listeners
+  });
+  var newComponent = function () {
+    Ext.apply(this, config);
+    if (options.constructor) {
+      options.constructor.call(this, Object.extend(config, arguments[0]));
+    }
+    debugger;
+    module[lastName].superclass.constructor.apply(this, arguments);
+  };
+  Ext.extend(newComponent, options.kindOf);
+  Ext.reg(fullName.slashify(), newComponent);
+  module[lastName] = newComponent;
+}
+
+function View (fullName, options) {
+  var nameArr = fullName.split('.');
+  var lastName = nameArr.pop();
+  var module =
+    nameArr.inject(root, function (module, name) {
+      return (module[name] || (module[name] = {}));
+    });
+  options['view_name'] = fullName;
+  module[lastName] = options
 }
