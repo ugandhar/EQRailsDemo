@@ -6,59 +6,59 @@ root.TreeNavComponent.Functions = {
     RUBY['js_full_class_name'].superclass.initComponent.call(this);
 
     APP.on('viewChange', function (app, view) {
-      var nodeToAdd = me.childToAppendForView(view);
-      if(nodeToAdd) {
-        var parentNode = me.parentNodeForView(me, view);
-        parentNode.expand(false, true, function () {
-          parentNode.appendChild(nodeToAdd);
-          var childNode = me.childNodeForView(me, view);
-          childNode.ensureVisible();
-          childNode.select();
-          childNode.expand();
-        });
-      }
+      var navNode = me.getNodeById(view.path);
+      if(!navNode) { navNode = me.appendNavNodeForPath(view.path) }
+      navNode.ensureVisible();
+      navNode.select();
+      navNode.expand();
     });
+
+//      me.ensureNodeVisibleForView(view);
+//      var node = me.nodeForView(view);
+//      node.select();
+//
+//
+//
+//      var nodeToAdd = me.childToAppendForView(view);
+//      if(nodeToAdd) {
+//        var parentNode = me.parentNodeForView(me, view);
+//        if(!parentNode) {
+//        }
+//        parentNode.expand(false, true, function () {
+//          parentNode.appendChild(nodeToAdd);
+//          var childNode = me.childNodeForView(me, view);
+//          childNode.ensureVisible();
+//          childNode.select();
+//          childNode.expand();
+//        });
+//      }
+    
     //Ext.History.on('change', this.processHistory, this);
   },
   // END JS METHOD
 
   // START JS METHOD
-  parentNodeForView: function (me, view) {
-    var node;
-    switch(view.viewName) {
-      case 'Characters.Show':
-        node = me.getNodeById('/characters');
-        break;
-      case 'Characters.States.Show':
-        node = me.getNodeById('/characters/1/states');
-        break;
-
+  appendNavNodeForPath: function (path) {
+    var appendedNode;
+    var parentPath = Route.forPath(path).getParentRoute().path;
+    var parentNode = this.getNodeById(parentPath);
+    if(!parentNode) {
+      parentNode = this.appendNavNodeForPath(parentPath);
     }
-    return node;
+    parentNode.expand();
+    appendedNode = this.getNodeById(path);
+    if(!appendedNode) {
+      appendedNode = parentNode.appendChild(this.nodeConfigForPath(path));
+    }
+    return appendedNode;
   },
   // END JS METHOD
 
   // START JS METHOD
-  childNodeForView: function (me, view) {
-    var node;
-    switch (view.viewName) {
-      case 'Characters.Show':
-        node = me.getNodeById('/characters/1');
-        break;
-      case 'Characters.States.Show':
-        node = me.getNodeById('/characters/1/states/1');
-        break;
-    }
-    return node;
-  },
-  // END JS METHOD
-
-
-  // START JS METHOD
-  childToAppendForView: function (view) {
-    var component;
-    switch (view.viewName) {
-      case 'Characters.Show':
+  nodeConfigForPath: function (path) {
+    var component
+    switch(path) {
+      case '/characters/1':
         component = {
           id: '/characters/1',
           text: 'chr1',
@@ -72,25 +72,138 @@ root.TreeNavComponent.Functions = {
           ]
         };
         break;
-      case 'Characters.States.Show':
+      case '/characters/1/states/1':
         component = {
           id: '/characters/1/states/1',
           text: 'state1',
           children: [
             { id: '/characters/1/states/1/phenotypes',
-              text: 'Phenotypes'
+              text: 'Phenotypes',
+              children: [
+                { hidden: true }
+              ]
             }
           ]
         };
         break;
+      case '/characters/1/states/1/phenotypes/new':
+        component = {
+          id: '/characters/1/states/1/phenotypes/new',
+          text: 'New: 1',
+          children: [
+            { hidden: true }
+          ]
+        };
+        break;
+      default:
+        alert("couldn't find config for path "+path);
     }
     return component;
   },
   // END JS METHOD
 
+
+//  // START JS METHOD
+//  ensureNodeVisibleForView: function (viewName) {
+//
+//
+//
+//
+//
+//    var node = this.nodeForView(viewName)
+//    if(!node) {
+//      parentNode = this.parentNodeForView(viewName);
+//      if(!parentNode) {
+//        this.ensureNodeVisibleForView(this.parentViewForView(viewName))
+//      }
+//
+//      var parentView = this.parentViewForView(viewName);
+//      this.ensureNodeVisibleForView(parentView);
+//
+//    }
+//
+//  },
+//  // END JS METHOD
+//
+//  // START JS METHOD
+//  parentNodeSourceForPath: function (treePanel, view) {
+//    switch(view.viewName) {
+//
+//
+//    }
+//
+//  },
+//  // END JS METHOD
+//
+//  // START JS METHOD
+//  parentNodeForView: function (me, view) {
+//    var node;
+//    switch(view.viewName) {
+//      case 'Characters.Show':
+//        node = me.getNodeById('/characters');
+//        break;
+//      case 'Characters.States.Show':
+//        node = me.getNodeById('/characters/1/states');
+//        break;
+//
+//    }
+//    return node;
+//  },
+//  // END JS METHOD
+//
+//  // START JS METHOD
+//  childNodeForView: function (me, view) {
+//    var node;
+//    switch (view.viewName) {
+//      case 'Characters.Show':
+//        node = me.getNodeById('/characters/1');
+//        break;
+//      case 'Characters.States.Show':
+//        node = me.getNodeById('/characters/1/states/1');
+//        break;
+//    }
+//    return node;
+//  },
+//  // END JS METHOD
+//
+//
+//  // START JS METHOD
+//  childToAppendForView: function (view) {
+//    var component;
+//    switch (view.viewName) {
+//      case 'Characters.Show':
+//        component = {
+//          id: '/characters/1',
+//          text: 'chr1',
+//          children: [
+//            { id: '/characters/1/states',
+//              text: 'States',
+//              children: [
+//                { hidden: true }
+//              ]
+//            }
+//          ]
+//        };
+//        break;
+//      case 'Characters.States.Show':
+//        component = {
+//          id: '/characters/1/states/1',
+//          text: 'state1',
+//          children: [
+//            { id: '/characters/1/states/1/phenotypes',
+//              text: 'Phenotypes'
+//            }
+//          ]
+//        };
+//        break;
+//    }
+//    return component;
+//  },
+//  // END JS METHOD
+//
   // START JS METHOD
   onClick: function (n) {
-    root.APP.loadView(n.attributes.id);
+    window.location.hash = n.attributes.id;
   }
   // END JS METHOD
 };

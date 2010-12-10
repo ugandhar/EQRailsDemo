@@ -24,6 +24,14 @@ root.AppComponent.Functions = {
     Ext.Ajax.on('requestcomplete', function(){this.findById('main-statusbar').hideBusy()}, this);
     Ext.Ajax.on('requestexception', function(){this.findById('main-statusbar').hideBusy()}, this);
 
+    this.currentHash = '#';
+    this.hashObserver = new PeriodicalExecuter(function (pe) {
+      if(APP.currentHash != window.location.hash) {
+        APP.currentHash = window.location.hash;
+        APP.loadView(APP.currentHash.slice(1));
+      }
+    }, 0.2);
+
     // Initialize history
     Ext.History.init();
   },
@@ -71,7 +79,7 @@ root.AppComponent.Functions = {
   // START JS METHOD
   loadView: function (path) {
     var me = this;
-    var route = Route.fromPath(path);
+    var route = Route.forPath(path);
 //    var splitPath = path.slice(1).split('/');
 //    var evenPath = splitPath.reject(function (res, i) { return (i % 2 == 1) });
     var mod =
@@ -79,11 +87,14 @@ root.AppComponent.Functions = {
         return ((module && module[part.camelize()]) || null);
       });
     var action = route.action;
-    var view = mod && mod[action.capitalize()];
-    if (view) {
+    var viewType = mod && mod[action.capitalize()];
+    if (viewType) {
+      var view = new viewType({ path: path });
       var mainPanel = root.APP.getComponent('app-panel').getComponent('main-panel');
       mainPanel.removeAll(true);
       mainPanel.add(view.components);
+      if(APP.currentHash != '#'+path)      { APP.currentHash = '#'+path }
+      if(window.location.hash != '#'+path) { window.location.hash = path }
       mainPanel.doLayout();
       this.fireEvent('viewChange', this, view);
     } else {

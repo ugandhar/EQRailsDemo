@@ -36,8 +36,9 @@ View('Phenotypes.New', {
                 if(item != checked) { item.hide() }
                 
               })
-              var parent = radioGroup.findParentBy(function (parent) { return parent.getComponent('form-pa') });
-              var formToShow = parent.getComponent('form-pa');
+              var formItemId = 'form-'+checked.value;
+              var parent = radioGroup.findParentBy(function (parent) { return parent.getComponent(formItemId) });
+              var formToShow = parent.getComponent(formItemId);
               formToShow.show();
             }
           }
@@ -82,8 +83,8 @@ View('Phenotypes.New', {
       hidden: true,
       items: [
         new Ext.form.TextField({ fieldLabel: 'Entity' }),
-        new Ext.form.TextField({ fieldLabel: 'Count'  }),
-        new Ext.form.TextField({ fieldLabel: 'Within' })
+        new Ext.form.TextField({ fieldLabel: 'Quality'  }),
+        new Ext.form.TextField({ fieldLabel: 'Dependent Entity' })
       ]
     }),
     new Ext.form.FormPanel({
@@ -93,10 +94,11 @@ View('Phenotypes.New', {
       hidden: true,
       items: [
         new Ext.form.TextField({ fieldLabel: 'Entity' }),
-        new Ext.form.TextField({ fieldLabel: 'Count'  }),
-        new Ext.form.TextField({ fieldLabel: 'Within' })
+        new Ext.form.TextField({ fieldLabel: 'Quality'}),
+        new Ext.form.TextField({ fieldLabel: 'Dependent Entity' }),
+        new Ext.form.TextField({ fieldLabel: 'Value' }),
+        new Ext.form.TextField({ fieldLabel: 'Unit' })
       ]
     })
-
   ]
 });

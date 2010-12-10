@@ -46,26 +46,31 @@ function Component (fullName, options) {
   module[lastName] = newComponent;
 }
 
-function View (fullName, options) {
+function View (fullName, proto) {
   var nameArr = fullName.split('.');
   var lastName = nameArr.pop();
   var module =
     nameArr.inject(root, function (module, name) {
       return (module[name] || (module[name] = {}));
     });
-  options.viewName = fullName;
-  module[lastName] = options
+  proto.viewName = fullName;
+  module[lastName] = function (opts) {
+    this.path = opts.path;
+  }
+  module[lastName].prototype = proto;
 }
 
-Route = {
-  fromPath: function (path) {
+Route = function (routeHash) {
+  Object.extend(this, routeHash);
+}
+Object.extend(Route, {
+  forPath: function (path) {
     var splitPath =
       path.
         sub(/^\//, '').
         split('/');
-    var route =
+    var routeHash =
       splitPath.
-//        reject(function (part, i) { return (i % 2 == 1) }).
         inject(Routes.PATHS_TO_ROUTES, function (acc, part, i) {
           return (
             part.match(/^\d+$/) ?
@@ -75,11 +80,24 @@ Route = {
               acc[part]
           )
         });
-    return route;
+    return new Route(Object.extend(routeHash, { path: path }));
   },
 
   fromControllerAction: function (controller, action) {
-    return (Routes.CONTROLLERS_ACTIONS_TO_ROUTES[controller][action])
+    return new Route(Routes.CONTROLLERS_ACTIONS_TO_ROUTES[controller][action])
   }
   
+});
+Route.prototype = {
+  getParentRoute: function () {
+    var splitPath = this.path.split('/');
+    splitPath.pop();
+    return Route.forPath(splitPath.join('/'));
+  }
 }
+
+HashObserver = Class.create(Abstract.TimedObserver, {
+  getValue: function() {
+    return window.location.hash;
+  }
+});

@@ -50,15 +50,6 @@ class AppComponent < Netzke::Base
               :class_name => 'NavTreePanelComponent',
               :region => 'west',
               :width => 250
-            },{
-              :id => 'main-statusbar',
-              :xtype => 'statusbar',
-              :region => 'south',
-              :height => 22,
-              :statusAlign => 'right',
-              :busyText => 'Busy...',
-              :default_text => 'Ready.',
-              :default_icon_cls => ""
             }
           ]
         }
