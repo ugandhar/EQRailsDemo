@@ -18,7 +18,9 @@ String.prototype.pluralize = function () {
 
 String.prototype.singularize = function () {
   var singularized;
-  if (this.match(/s$/)) {
+  if (this.match(/ies$/)) {
+    singularized = this.slice(0, -3)+'y';
+  } else if (this.match(/s$/)) {
     singularized = this.slice(0, -1);
   }
   return singularized;
@@ -57,7 +59,11 @@ function View (fullName, proto) {
   module[lastName] = function (opts) {
     this.path = opts.path;
   }
-  module[lastName].prototype = proto;
+  module[lastName].prototype = Object.extend({
+    getRoute: function () {
+      return Route.forPath(this.path)
+    }
+  }, proto);
 }
 
 Route = function (routeHash) {
@@ -93,6 +99,10 @@ Route.prototype = {
     var splitPath = this.path.split('/');
     splitPath.pop();
     return Route.forPath(splitPath.join('/'));
+  },
+
+  getPath: function () {
+    return this.path
   }
 }
 

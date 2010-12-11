@@ -20,9 +20,9 @@ Component('CatalogComponent', {
     options.store = new Ext.data.JsonStore({
       autoDestroy: true,
       root: this.model.underscore().pluralize(),
-      idProperty: this.model.underscore()+'_id',
+      idProperty: this.idProperty || options.idProperty || this.model.underscore()+'_id',
       fields: storeFields.unshift(this.model.underscore()+'_id') && storeFields,
-      data: this.data
+      data: this.data || options.data
     });
 //    options.colModel = new Ext.grid.ColumnModel({
 //      defaults: {
@@ -33,9 +33,8 @@ Component('CatalogComponent', {
 //    });
     options.title = this.model.pluralize();
     options.listeners = {
-      click: function () {
-        // get params
-        APP.loadView(me.dataURI+'/1');
+      rowclick: function (grid, rowIndex) {
+        window.location.hash = me.dataURI+'/'+grid.getStore().getAt(rowIndex).id;
       }
     };
     Ext.apply(this, options);

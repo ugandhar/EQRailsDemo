@@ -13,6 +13,9 @@ class ApplicationController < ActionController::Base
 
   def concat_js filename
     f = File.read(filename)
+    f.sub!(/RUBY\(['"](.+?)['"]\)/) do
+      eval($1)
+    end
     f.sub!(/require \(['"]([\w\/]+)['"]\)/) do
       concat_js("app/components/#{$1}.js")
     end

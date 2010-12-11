@@ -8,5 +8,7 @@ RubyPhenex::Application.routes.draw do
     end
   end
 
-  resources :ontologies
+  resources :ontologies do
+    resources :terms, controller: 'ontologies/terms'
+  end
 end

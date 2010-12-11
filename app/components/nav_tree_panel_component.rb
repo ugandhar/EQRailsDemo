@@ -33,8 +33,8 @@ class NavTreePanelComponent < Netzke::Base
   end
 
   js_method :init_component
-  js_method :append_nav_node_for_path
-  js_method :node_config_for_path
+  js_method :append_nav_node_for_route
+  js_method :node_config_for_route
 
 
 #  js_method :child_node_for_view

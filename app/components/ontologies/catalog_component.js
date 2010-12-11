@@ -6,15 +6,8 @@ Component('Ontologies.CatalogComponent', {
     model: 'Ontology',
     dataURI: '/ontologies',
     columns: [
-      'name',
-      { header: 'URI', dataIndex: 'uri' }
-    ],
-    data: {
-      ontologies: [
-        { ontology_id: 1, name: 'ont1', uri: 'uri1' },
-        { ontology_id: 2, name: 'ont2', uri: 'uri2' },
-        { ontology_id: 3, name: 'ont3', uri: 'uri3' }
-      ]
-    }
+      { header: 'Ontology ID', dataIndex: 'ontology_id' },
+      'abbreviation'
+    ]
   }
 });

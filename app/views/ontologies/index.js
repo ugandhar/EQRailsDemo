@@ -1,8 +1,9 @@
 require ('ontologies/catalog_component')
 
 View('Ontologies.Index', {
-  components: {
-    xtype: 'ontologies/catalog_component'
-  }
+  components:
+    new Ontologies.CatalogComponent({
+      data: 'RUBY("@ontologies.to_json")'.evalJSON()
+    })
 });
 

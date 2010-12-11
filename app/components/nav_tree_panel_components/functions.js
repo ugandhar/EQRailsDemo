@@ -6,8 +6,9 @@ root.TreeNavComponent.Functions = {
     RUBY['js_full_class_name'].superclass.initComponent.call(this);
 
     APP.on('viewChange', function (app, view) {
-      var navNode = me.getNodeById(view.path);
-      if(!navNode) { navNode = me.appendNavNodeForPath(view.path) }
+
+      var navNode = me.getNodeById(view.getRoute().getPath());
+      if(!navNode) { navNode = me.appendNavNodeForRoute(view.getRoute()) }
       navNode.ensureVisible();
       navNode.select();
       navNode.expand();
@@ -38,32 +39,32 @@ root.TreeNavComponent.Functions = {
   // END JS METHOD
 
   // START JS METHOD
-  appendNavNodeForPath: function (path) {
+  appendNavNodeForRoute: function (route) {
     var appendedNode;
-    var parentPath = Route.forPath(path).getParentRoute().path;
-    var parentNode = this.getNodeById(parentPath);
+    var parentRoute = route.getParentRoute();
+    var parentNode = this.getNodeById(parentRoute.getPath());
     if(!parentNode) {
-      parentNode = this.appendNavNodeForPath(parentPath);
+      parentNode = this.appendNavNodeForRoute(parentRoute);
     }
     parentNode.expand();
-    appendedNode = this.getNodeById(path);
+    appendedNode = this.getNodeById(route.getPath());
     if(!appendedNode) {
-      appendedNode = parentNode.appendChild(this.nodeConfigForPath(path));
+      appendedNode = parentNode.appendChild(this.nodeConfigForRoute(route));
     }
     return appendedNode;
   },
   // END JS METHOD
 
   // START JS METHOD
-  nodeConfigForPath: function (path) {
+  nodeConfigForRoute: function (route) {
     var component
-    switch(path) {
-      case '/characters/1':
+    switch(route.controller.camelize()+'.'+route.action.camelize()) {
+      case 'Characters.Show':
         component = {
-          id: '/characters/1',
-          text: 'chr1',
+          id: route.path,
+          text: 'Character: ?',
           children: [
-            { id: '/characters/1/states',
+            { id: route.path+'/states',
               text: 'States',
               children: [
                 { hidden: true }
@@ -72,12 +73,12 @@ root.TreeNavComponent.Functions = {
           ]
         };
         break;
-      case '/characters/1/states/1':
+      case 'Characters.States.Show':
         component = {
-          id: '/characters/1/states/1',
-          text: 'state1',
+          id: route.path,
+          text: 'State: ?',
           children: [
-            { id: '/characters/1/states/1/phenotypes',
+            { id: route.path+'/phenotypes',
               text: 'Phenotypes',
               children: [
                 { hidden: true }
@@ -86,17 +87,31 @@ root.TreeNavComponent.Functions = {
           ]
         };
         break;
-      case '/characters/1/states/1/phenotypes/new':
+      case 'Phenotypes.New':
         component = {
-          id: '/characters/1/states/1/phenotypes/new',
-          text: 'New: 1',
+          id: route.path,
+          text: 'New: ?',
           children: [
             { hidden: true }
           ]
         };
         break;
+      case 'Ontologies.Show':
+        component = {
+          id: route.path,
+          text: 'Ontology: ?',
+          children: [
+            { id: route.path+'/terms',
+              text: 'Terms',
+              children: [
+                { hidden: true }
+              ]
+            }
+          ]
+        }
+        break;
       default:
-        alert("couldn't find config for path "+path);
+        alert("couldn't find config for path "+route.path);
     }
     return component;
   },
