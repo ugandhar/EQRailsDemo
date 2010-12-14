@@ -20,9 +20,9 @@ root.AppComponent.Functions = {
     //Ext.History.on('change', this.processHistory, this);
 
     // Setting the "busy" indicator for Ajax requests
-    Ext.Ajax.on('beforerequest', function(){this.findById('main-statusbar').showBusy()}, this);
-    Ext.Ajax.on('requestcomplete', function(){this.findById('main-statusbar').hideBusy()}, this);
-    Ext.Ajax.on('requestexception', function(){this.findById('main-statusbar').hideBusy()}, this);
+    //Ext.Ajax.on('beforerequest', function(){this.findById('main-statusbar').showBusy()}, this);
+    //Ext.Ajax.on('requestcomplete', function(){this.findById('main-statusbar').hideBusy()}, this);
+    //Ext.Ajax.on('requestexception', function(){this.findById('main-statusbar').hideBusy()}, this);
 
     this.currentHash = '#';
     this.hashObserver = new PeriodicalExecuter(function (pe) {

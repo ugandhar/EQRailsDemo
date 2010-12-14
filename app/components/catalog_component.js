@@ -2,6 +2,9 @@ Component('CatalogComponent', {
   kindOf: Ext.grid.GridPanel,
   constructor: function (options) {
     var me = this;
+    var url = this.url || options.url;
+    var data = this.data || options.data;
+    var pageSize = this.pageSize || options.pageSize || 50;
     var columns =
       this.columns.inject([], function (acc, col) {
         acc.push(
@@ -16,25 +19,53 @@ Component('CatalogComponent', {
         arrOut.push(column.dataIndex);
         return arrOut;
       });
-    
-    options.store = new Ext.data.JsonStore({
+
+    var storeCfg = {
       autoDestroy: true,
-      root: this.model.underscore().pluralize(),
-      idProperty: this.idProperty || options.idProperty || this.model.underscore()+'_id',
-      fields: storeFields.unshift(this.model.underscore()+'_id') && storeFields,
-      data: this.data || options.data
-    });
+      remoteSort: true,
+      root: this.model.demodulize().underscore().pluralize(),
+      idProperty: this.idProperty || options.idProperty || this.model.demodulize().underscore()+'_id',
+      fields: storeFields,
+    }
+    if(!data) {
+      storeCfg = Object.extend(storeCfg, {
+        url: url,
+        restful: true,
+        totalProperty: 'totalCount',
+        remoteSort: true
+      });
+    } else {
+      storeCfg.data = data
+    }
+    options.store = new Ext.data.JsonStore(storeCfg);
+
+    if(!data) {
+      options.bbar = new Ext.PagingToolbar({
+        pageSize: pageSize,
+        store: options.store,
+        displayInfo: true,
+        displayMsg: 'Displaying '+this.model.demodulize().underscore().pluralize()+' {0} - {1} of {2}',
+        emptyMsg: "No "+this.model.demodulize().underscore().pluralize()+" to display"
+      });
+    }
+    
 //    options.colModel = new Ext.grid.ColumnModel({
 //      defaults: {
 //        width: 120,
 //        sortable: true
 //      },
-      options.columns = columns;
+    options.columns = columns;
 //    });
-    options.title = this.model.pluralize();
+    options.loadMask = true;
+    options.title = this.model.demodulize().pluralize();
     options.listeners = {
       rowclick: function (grid, rowIndex) {
-        window.location.hash = me.dataURI+'/'+grid.getStore().getAt(rowIndex).id;
+        window.location.hash = grid.url+'/'+grid.getStore().getAt(rowIndex).id;
+      },
+      afterrender: function () {
+        if(!data) {
+          options.store.load({ params: { start: 0, limit: pageSize } });
+        }
       }
     };
     Ext.apply(this, options);

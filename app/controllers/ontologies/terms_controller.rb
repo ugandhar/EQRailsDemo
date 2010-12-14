@@ -1,21 +1,44 @@
+require 'xml'
+
 module Ontologies
   class TermsController < ApplicationController
     def index
-      doc = open('http://rest.bioontology.org/bioportal/virtual/ontology/1104/all?'+
-              '&pagesize=50&pagenum=1&email=cgoddard@flmnh.ufl.edu') { |f| Hpricot(f) }
-      @terms =
-        (doc/'success/data/page/contents/classBeanResultList/classBean').collect do |c|
-          {
-           id: (c/'id').first.try(:to_plain_text),
-           fullId: (c/'fullId').first.try(:to_plain_text),
-           label: (c/'label').first.try(:to_plain_text),
-           type: (c/'type').first.try(:to_plain_text),
-          }
-        end
+      start = (params[:start] || 0).to_i
+      limit = (params[:limit] || 20).to_i
+      start_page = (start / limit) + 1
+      doc =
+        open("http://rest.bioontology.org/bioportal/virtual/ontology/#{params[:ontology_id]}/all?"+
+             "&pagesize=#{limit}&pagenum=#{start_page}&email=cgoddard@flmnh.ufl.edu") { |f|
+          parser = XML::Parser.string(f.read)
+          parser.parse
+        }
+      @terms = {
+        totalCount: doc.find('//success/data/page/numResultsTotal').first.inner_xml,
+        terms:
+          doc.find('//success/data/page/contents/classBeanResultList/classBean').collect do |c|
+            {
+             id:     c.find('id').first.try(:inner_xml),
+             fullId: c.find('fullId').first.try(:inner_xml),
+             label:  c.find('label').first.try(:inner_xml),
+             type:   c.find('type').first.try(:inner_xml),
+            }
+          end
+      }
 
       respond_to do |format|
-        format.js { render js: 'index' }
+        format.json { render json: @terms }
       end
+    end
+
+    def search
+      debugger
+      doc =
+        open("http://rest.bioontology.org/bioportal/search/#{params[:query]}?email=cgoddard@flmnh.ufl.edu&ontologyids=#{params[:ontology_id]}") { |f|
+          parser = XML::Parser.string(f.read)
+          parser.parse
+        }
+      debugger
+      "helllo"
     end
   end
 end

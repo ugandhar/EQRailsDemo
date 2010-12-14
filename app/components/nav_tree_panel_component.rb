@@ -5,7 +5,6 @@ class NavTreePanelComponent < Netzke::Base
 
   config do
     {
-      header: false,
       rootVisible: false,
       root: {
         text: "Records",

@@ -9,6 +9,10 @@ RubyPhenex::Application.routes.draw do
   end
 
   resources :ontologies do
-    resources :terms, controller: 'ontologies/terms'
+    resources :terms, controller: 'ontologies/terms' do
+      collection do
+        get :search
+      end
+    end
   end
 end

@@ -1,8 +1,10 @@
 require ('/characters/catalog_component')
 
 View('Characters.Index', {
-  components: {
-    xtype: 'characters/catalog_component'
+  config: {
+    components: function () {
+      return new Characters.CatalogComponent({ url: this.url })
+    }
   }
 });
 

@@ -16,8 +16,8 @@ Component('Phenotypes.CatalogComponent', {
     },
     tbar: [
       { text: 'New',
-        handler: function () {
-          APP.loadView('/characters/1/states/1/phenotypes/new')
+        handler: function (button) {
+          APP.loadView(button.findParentByType(CatalogComponent).url+'/new')
         }
       }
     ]

@@ -41,6 +41,9 @@ class AppComponent < Netzke::Base
           :id => 'app-panel',
           :region => 'center',
           :layout => 'border',
+          :defaults => {
+            :split => true
+          },
           :items => [
             {
               :id => 'main-panel',
@@ -48,7 +51,9 @@ class AppComponent < Netzke::Base
               :layout => 'fit',
             },{
               :class_name => 'NavTreePanelComponent',
+              :collapsible => true,
               :region => 'west',
+              :title => 'Navigation',
               :width => 250
             }
           ]

@@ -51,7 +51,24 @@ View('Phenotypes.New', {
       border: false,
       hidden: true,
       items: [
-        new Ext.form.TextField({ fieldLabel: 'Entity' }),
+        new Ext.form.ComboBox({
+          forceSelection: true,
+          displayField: 'id',
+          minChars: 0,
+          typeAhead: true,
+          valueField: 'id',
+          store: new Ext.data.JsonStore({
+            autoDestroy: true,
+            remoteSort: true,
+            root: 'terms',
+            idProperty: 'id',
+            fields: [ 'id' ],
+            url: '/ontologies/1146/terms/search',
+            restful: true,
+            totalProperty: 'totalCount'
+          })
+        }),
+//        new Ext.form.TextField({ fieldLabel: 'Entity' }),
         new Ext.form.Radio({
           name: 'field-presence',
           boxLabel: 'Present',

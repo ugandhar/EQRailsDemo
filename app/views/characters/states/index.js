@@ -1,8 +1,10 @@
-require ('/characters/states/grid_panel_component')
+require ('/characters/states/catalog_component')
 
 View('Characters.States.Index', {
-  components: {
-    xtype: 'characters/states/grid_panel_component'
+  config: {
+    components: function () {
+      return new Characters.States.CatalogComponent({ url: this.url })
+    }
   }
 });
 

@@ -3,7 +3,10 @@
 <head>
   <title>RubyPhenex</title>
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag 'prototype', 'rails' %>
+
+  <%= netzke_init %>
+  <%= javascript_include_tag 'application' %>
   <script type="text/javascript">
     Routes = {};
     Routes.PATHS_TO_ROUTES =
@@ -11,7 +14,6 @@
     Routes.CONTROLLERS_ACTIONS_TO_ROUTES =
       '<%= raw Routes::JSON::CONTROLLERS_ACTIONS_TO_ROUTES %>'.evalJSON();
   </script>
-  <%= netzke_init %>
   <%= csrf_meta_tag %>
 </head>
 <body>

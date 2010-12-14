@@ -1,9 +1,20 @@
 var root = this;
 
+String.prototype.camelize = function (lowFirstLetter) {
+  var out = this;
+  if(!lowFirstLetter) {
+    out = this.capitalize();
+  }
+  out = out.gsub(/_([a-z])/, function (match) { return match[1].capitalize() });
+  out = out.gsub(/\/([a-z])/, function (match) { return ('/'+match[1].capitalize()) });
+  out = out.gsub(/\//, '.')
+  return out;
+};
+
 String.prototype.slashify = function () {
   var str = this.gsub('.', '/');
   return (str.underscore());
-}
+};
 
 String.prototype.pluralize = function () {
   var pluralized;
@@ -14,7 +25,7 @@ String.prototype.pluralize = function () {
   }
 
   return pluralized;
-}
+};
 
 String.prototype.singularize = function () {
   var singularized;
@@ -24,7 +35,11 @@ String.prototype.singularize = function () {
     singularized = this.slice(0, -1);
   }
   return singularized;
-}
+};
+
+String.prototype.demodulize = function () {
+  return this.split('.').pop()
+};
 
 function Component (fullName, options) {
   var nameArr = fullName.split('.')
@@ -55,15 +70,22 @@ function View (fullName, proto) {
     nameArr.inject(root, function (module, name) {
       return (module[name] || (module[name] = {}));
     });
+  var config = proto.config;
   proto.viewName = fullName;
   module[lastName] = function (opts) {
     this.path = opts.path;
+    this.url = opts.path;
+    this.components = config ?
+      Object.isFunction(config.components) ?
+        config.components.apply(this) :
+        config.components :
+      proto.components;
   }
-  module[lastName].prototype = Object.extend({
+  module[lastName].prototype = {
     getRoute: function () {
       return Route.forPath(this.path)
     }
-  }, proto);
+  };
 }
 
 Route = function (routeHash) {
@@ -72,14 +94,16 @@ Route = function (routeHash) {
 Object.extend(Route, {
   forPath: function (path) {
     var splitPath =
-      path.
-        sub(/^\//, '').
-        split('/');
+      path.blank() ?
+        [] :
+        path.
+          sub(/^\//, '').
+          split('/');
     var routeHash =
       splitPath.
         inject(Routes.PATHS_TO_ROUTES, function (acc, part, i) {
           return (
-            part.match(/^\d+$/) ?
+            part.match(/^[\d,]+$/) ?
               i == (splitPath.size() - 1)? // is last in array
                 acc[':id'] :
                 acc[':'+splitPath[i-1].singularize()+'_id'] :
@@ -111,3 +135,7 @@ HashObserver = Class.create(Abstract.TimedObserver, {
     return window.location.hash;
   }
 });
+
+Ext.Ajax.defaultHeaders = {
+  'Accept': 'application/json'
+};

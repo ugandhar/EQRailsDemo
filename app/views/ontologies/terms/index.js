@@ -1,8 +1,9 @@
 require ('ontologies/terms/catalog_component')
 
 View('Ontologies.Terms.Index', {
-  components:
-    new Ontologies.Terms.CatalogComponent({
-      data: 'RUBY("@terms.to_json")'.evalJSON()
-    })
+  config: {
+    components: function () {
+      return new Ontologies.Terms.CatalogComponent({ url: this.url })
+    }
+  }
 });
