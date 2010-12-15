@@ -25,8 +25,8 @@ Component('CatalogComponent', {
       remoteSort: true,
       root: this.model.demodulize().underscore().pluralize(),
       idProperty: this.idProperty || options.idProperty || this.model.demodulize().underscore()+'_id',
-      fields: storeFields,
-    }
+      fields: storeFields
+    };
     if(!data) {
       storeCfg = Object.extend(storeCfg, {
         url: url,
@@ -58,16 +58,17 @@ Component('CatalogComponent', {
 //    });
     options.loadMask = true;
     options.title = this.model.demodulize().pluralize();
-    options.listeners = {
-      rowclick: function (grid, rowIndex) {
+    options.listeners || (options.listeners = {})
+    options.listeners.rowclick || (options.listeners.rowclick =
+      function (grid, rowIndex) {
         window.location.hash = grid.url+'/'+grid.getStore().getAt(rowIndex).id;
-      },
-      afterrender: function () {
+      });
+    options.listeners.afterrender || (options.listeners.afterrender =
+      function () {
         if(!data) {
           options.store.load({ params: { start: 0, limit: pageSize } });
         }
-      }
-    };
+      });
     Ext.apply(this, options);
   },
   config: {

@@ -8,7 +8,7 @@ class NavTreePanelComponent < Netzke::Base
       rootVisible: false,
       root: {
         text: "Records",
-        id: "records",
+        id: "/",
         hidden: true,
         children: [
           { text: "Characters",
@@ -21,6 +21,23 @@ class NavTreePanelComponent < Netzke::Base
             id: "/ontologies",
             children: [
               { text: '', hidden: true }
+            ]
+          },
+          { text: "Remote",
+            id: "/remote",
+            children: [
+              { text: "BioPortal",
+                id: "/remote/bioportal",
+                children: [
+                  {
+                    text: "Ontologies",
+                    id: "/remote/bioportal/ontologies",
+                    children: [
+                      { text: "", hidden: true }
+                    ]
+                  }
+                ]
+              }
             ]
           }
         ]

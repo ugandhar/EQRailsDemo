@@ -31,14 +31,25 @@ module Ontologies
     end
 
     def search
-      debugger
       doc =
         open("http://rest.bioontology.org/bioportal/search/#{params[:query]}?email=cgoddard@flmnh.ufl.edu&ontologyids=#{params[:ontology_id]}") { |f|
           parser = XML::Parser.string(f.read)
           parser.parse
         }
-      debugger
-      "helllo"
+      @terms = {
+        totalCount: doc.find('//success/data/page/numResultsTotal').first.inner_xml,
+        terms:
+          doc.find('//success/data/page/contents/searchResultList/searchBean').collect do |c|
+            {
+             conceptIdShort:     c.find('conceptIdShort').first.try(:inner_xml),
+             contents:           c.find('contents').first.try(:inner_xml),
+            }
+          end
+      }
+
+      respond_to do |format|
+        format.json { render json: @terms }
+      end
     end
   end
 end

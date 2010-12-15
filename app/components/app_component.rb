@@ -17,13 +17,6 @@ class AppComponent < Netzke::Base
   class_attribute :logout_url
   self.logout_url = "/logout"
 
-  def menu
-    {
-      :text => "Tutorials",
-      :menu => %w{ characters }
-    }
-  end
-
   config do
     {
       :region => 'center',
@@ -49,13 +42,44 @@ class AppComponent < Netzke::Base
               :id => 'main-panel',
               :region => 'center',
               :layout => 'fit',
-            },{
-              :class_name => 'NavTreePanelComponent',
-              :collapsible => true,
-              :region => 'west',
-              :title => 'Navigation',
-              :width => 250
+            }, {
+              id: 'nav-panel',
+              region: 'west',
+              header: false,
+              layout: 'fit',
+              width: 250,
+              collapsible: true,
+              collapseMode: 'mini',
+              items: [{
+                title: 'Navigation',
+                class_name: 'NavTreePanelComponent',
+              }]
+            }, {
+              region: 'south',
+              layout: 'fit',
+              collapsible: true,
+              collapsed: true,
+              collapseMode: 'mini',
+              header: false,
+              height: 100,
+            }, {
+              region: 'east',
+              layout: 'fit',
+              collapsible: true,
+              collapsed: true,
+              collapseMode: 'mini',
+              header: false,
+              width: 100,
+            }, {
+              region: 'north',
+              layout: 'fit',
+              collapsible: true,
+              collapsed: true,
+              collapseMode: 'mini',
+              header: false,
+              height: 100
             }
+
           ]
         }
       ]

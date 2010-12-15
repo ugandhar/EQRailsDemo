@@ -10,10 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101207142905) do
+ActiveRecord::Schema.define(:version => 20101214183911) do
 
   create_table "characters", :primary_key => "character_id", :force => true do |t|
     t.string "name", :limit => nil, :null => false
+  end
+
+  create_table "ontologies", :id => false, :force => true do |t|
+    t.integer "bioportal_ontology_id", :null => false
   end
 
   create_table "states", :primary_key => "state_id", :force => true do |t|

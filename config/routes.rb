@@ -15,4 +15,10 @@ RubyPhenex::Application.routes.draw do
       end
     end
   end
+
+  resource :remote do
+    resource :bioportal do
+      resources :ontologies
+    end
+  end
 end

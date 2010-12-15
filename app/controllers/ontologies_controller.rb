@@ -10,11 +10,20 @@ class OntologiesController < ApplicationController
         parser.parse
       end
 
+    debugger
+    all_ontology_ids = !request.request_uri.match(/^\/remote/) &&
+      Ontology.select(:bioportal_ontology_id).all.collect(&:bioportal_ontology_id)
     all_ontologies =
-      doc.find('//success/data/list/ontologyBean').collect{|o|
-        { ontology_id:  o.find('ontologyId').try(:first).try(:inner_xml),
-          abbreviation: o.find('abbreviation').try(:first).try(:inner_xml)
-        }
+      doc.find('//success/data/list/ontologyBean').inject([]) {|acc, o|
+        ontology_id = o.find('ontologyId').try(:first).try(:inner_xml).to_i
+
+        if !all_ontology_ids || all_ontology_ids.include?(ontology_id)
+          acc <<
+            { ontology_id:  ontology_id,
+              abbreviation: o.find('abbreviation').try(:first).try(:inner_xml)
+            }
+        end
+        acc
       }
     @ontologies = { 
       totalCount: all_ontologies.size,

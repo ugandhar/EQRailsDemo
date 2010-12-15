@@ -4,10 +4,16 @@ Component('Ontologies.CatalogComponent', {
   kindOf: CatalogComponent,
   config: {
     model: 'Ontology',
-    dataURI: '/ontologies',
     columns: [
       { header: 'Ontology ID', dataIndex: 'ontology_id' },
       'abbreviation'
+    ],
+    tbar: [
+      { text: 'Add',
+        handler: function (button) {
+          window.location.hash = '/ontologies/new';
+        }
+      }
     ]
   }
 });

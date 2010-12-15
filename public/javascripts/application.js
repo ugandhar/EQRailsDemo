@@ -93,12 +93,11 @@ Route = function (routeHash) {
 }
 Object.extend(Route, {
   forPath: function (path) {
+    var nippedPath = path.sub(/^\//, '');
     var splitPath =
-      path.blank() ?
+      nippedPath.blank() ?
         [] :
-        path.
-          sub(/^\//, '').
-          split('/');
+        nippedPath.split('/');
     var routeHash =
       splitPath.
         inject(Routes.PATHS_TO_ROUTES, function (acc, part, i) {
@@ -122,6 +121,7 @@ Route.prototype = {
   getParentRoute: function () {
     var splitPath = this.path.split('/');
     splitPath.pop();
+    if(splitPath.size() == 1) { splitPath.push('') } // this is used to return '/' when at home path
     return Route.forPath(splitPath.join('/'));
   },
 

@@ -1,3 +1,3 @@
 View('Ontologies.Show', {
-  components: { html: "You are great!" }
+  components: { html: "Ontology info goes here." }
 });

@@ -58,7 +58,9 @@ root.TreeNavComponent.Functions = {
   // START JS METHOD
   nodeConfigForRoute: function (route) {
     var component
-    switch(route.controller.camelize()+'.'+route.action.camelize()) {
+    var routeName = route.controller.camelize();
+    if(route.action) { routeName = routeName+'.'+route.action.camelize() }
+    switch (routeName) {
       case 'Characters.Show':
         component = {
           id: route.path,
@@ -91,6 +93,15 @@ root.TreeNavComponent.Functions = {
         component = {
           id: route.path,
           text: 'New: ?',
+          children: [
+            { hidden: true }
+          ]
+        };
+        break;
+      case 'Ontologies.New':
+        component = {
+          id: route.path,
+          text: 'New Ontology',
           children: [
             { hidden: true }
           ]
