@@ -67,23 +67,8 @@ View('Phenotypes.New', {
           boxLabel: 'Absent',
           value: 'absent'
         }),
-        new Ext.form.ComboBox({
-          fieldLabel: 'Within',
-          forceSelection: true,
-          displayField: 'contents',
-          minChars: 0,
-          typeAhead: true,
-          valueField: 'conceptIdShort',
-          store: new Ext.data.JsonStore({
-            autoDestroy: true,
-            remoteSort: true,
-            root: 'terms',
-            idProperty: 'conceptIdShort',
-            fields: [ 'conceptIdShort', 'contents' ],
-            url: '/ontologies/1107/terms/search',
-            restful: true,
-            totalProperty: 'totalCount'
-          })
+        new Ontologies.Terms.ComboBox({
+          fieldLabel: 'Within'
         })
       ]
     }),
@@ -93,42 +78,12 @@ View('Phenotypes.New', {
       border: false,
       hidden: true,
       items: [
-        new Ext.form.ComboBox({
-          fieldLabel: 'Entity',
-          forceSelection: true,
-          displayField: 'contents',
-          minChars: 0,
-          typeAhead: true,
-          valueField: 'conceptIdShort',
-          store: new Ext.data.JsonStore({
-            autoDestroy: true,
-            remoteSort: true,
-            root: 'terms',
-            idProperty: 'conceptIdShort',
-            fields: [ 'conceptIdShort', 'contents' ],
-            url: '/ontologies/1107/terms/search',
-            restful: true,
-            totalProperty: 'totalCount'
-          })
+        new Ontologies.Terms.ComboBox({
+          fieldLabel: 'Entity'
         }),
         new Ext.form.TextField({ fieldLabel: 'Count'  }),
-        new Ext.form.ComboBox({
-          fieldLabel: 'Within',
-          forceSelection: true,
-          displayField: 'contents',
-          minChars: 0,
-          typeAhead: true,
-          valueField: 'conceptIdShort',
-          store: new Ext.data.JsonStore({
-            autoDestroy: true,
-            remoteSort: true,
-            root: 'terms',
-            idProperty: 'conceptIdShort',
-            fields: [ 'conceptIdShort', 'contents' ],
-            url: '/ontologies/1107/terms/search',
-            restful: true,
-            totalProperty: 'totalCount'
-          })
+        new Ontologies.Terms.ComboBox({
+          fieldLabel: 'Within'
         })
       ]
     }),
@@ -138,59 +93,14 @@ View('Phenotypes.New', {
       border: false,
       hidden: true,
       items: [
-        new Ext.form.ComboBox({
-          fieldLabel: 'Entity',
-          forceSelection: true,
-          displayField: 'contents',
-          minChars: 0,
-          typeAhead: true,
-          valueField: 'conceptIdShort',
-          store: new Ext.data.JsonStore({
-            autoDestroy: true,
-            remoteSort: true,
-            root: 'terms',
-            idProperty: 'conceptIdShort',
-            fields: [ 'conceptIdShort', 'contents' ],
-            url: '/ontologies/1107/terms/search',
-            restful: true,
-            totalProperty: 'totalCount'
-          })
+        new Ontologies.Terms.ComboBox({
+          fieldLabel: 'Entity'
         }),
-        new Ext.form.ComboBox({
-          fieldLabel: 'Quality',
-          forceSelection: true,
-          displayField: 'contents',
-          minChars: 0,
-          typeAhead: true,
-          valueField: 'conceptIdShort',
-          store: new Ext.data.JsonStore({
-            autoDestroy: true,
-            remoteSort: true,
-            root: 'terms',
-            idProperty: 'conceptIdShort',
-            fields: [ 'conceptIdShort', 'contents' ],
-            url: '/ontologies/1107/terms/search',
-            restful: true,
-            totalProperty: 'totalCount'
-          })
+        new Ontologies.Terms.ComboBox({
+          fieldLabel: 'Quality'
         }),
-        new Ext.form.ComboBox({
-          fieldLabel: 'Dependent Entity',
-          forceSelection: true,
-          displayField: 'contents',
-          minChars: 0,
-          typeAhead: true,
-          valueField: 'conceptIdShort',
-          store: new Ext.data.JsonStore({
-            autoDestroy: true,
-            remoteSort: true,
-            root: 'terms',
-            idProperty: 'conceptIdShort',
-            fields: [ 'conceptIdShort', 'contents' ],
-            url: '/ontologies/1107/terms/search',
-            restful: true,
-            totalProperty: 'totalCount'
-          })
+        new Ontologies.Terms.ComboBox({
+          fieldLabel: 'Dependent Entity'
         })
       ]
     }),
@@ -200,59 +110,14 @@ View('Phenotypes.New', {
       border: false,
       hidden: true,
       items: [
-        new Ext.form.ComboBox({
-          fieldLabel: 'Entity',
-          forceSelection: true,
-          displayField: 'contents',
-          minChars: 0,
-          typeAhead: true,
-          valueField: 'conceptIdShort',
-          store: new Ext.data.JsonStore({
-            autoDestroy: true,
-            remoteSort: true,
-            root: 'terms',
-            idProperty: 'conceptIdShort',
-            fields: [ 'conceptIdShort', 'contents' ],
-            url: '/ontologies/1107/terms/search',
-            restful: true,
-            totalProperty: 'totalCount'
-          })
+        new Ontologies.Terms.ComboBox({
+          fieldLabel: 'Entity'
         }),
-        new Ext.form.ComboBox({
-          fieldLabel: 'Quality',
-          forceSelection: true,
-          displayField: 'contents',
-          minChars: 0,
-          typeAhead: true,
-          valueField: 'conceptIdShort',
-          store: new Ext.data.JsonStore({
-            autoDestroy: true,
-            remoteSort: true,
-            root: 'terms',
-            idProperty: 'conceptIdShort',
-            fields: [ 'conceptIdShort', 'contents' ],
-            url: '/ontologies/1107/terms/search',
-            restful: true,
-            totalProperty: 'totalCount'
-          })
+        new Ontologies.Terms.ComboBox({
+          fieldLabel: 'Quality'
         }),
-        new Ext.form.ComboBox({
-          fieldLabel: 'Dependent Entity',
-          forceSelection: true,
-          displayField: 'contents',
-          minChars: 0,
-          typeAhead: true,
-          valueField: 'conceptIdShort',
-          store: new Ext.data.JsonStore({
-            autoDestroy: true,
-            remoteSort: true,
-            root: 'terms',
-            idProperty: 'conceptIdShort',
-            fields: [ 'conceptIdShort', 'contents' ],
-            url: '/ontologies/1107/terms/search',
-            restful: true,
-            totalProperty: 'totalCount'
-          })
+        new Ontologies.Terms.ComboBox({
+          fieldLabel: 'Dependent Entity'
         }),
         new Ext.form.TextField({ fieldLabel: 'Value' }),
         new Ext.form.TextField({ fieldLabel: 'Unit' })
