@@ -48,13 +48,13 @@ function Component (fullName, options) {
     nameArr.inject(root, function (module, name) {
       return (module[name] || (module[name] = {}));
     });
-  var config = Object.extend(options.config, { 
+  var config = Object.extend(Object.clone(options.config), {
     listeners: options.listeners
   });
   var newComponent = function () {
     Ext.apply(this, config);
     if (options.constructor) {
-      options.constructor.call(this, Object.extend(config, arguments[0]));
+      options.constructor.call(this, Object.extend(Object.clone(config), arguments[0]));
     }
     module[lastName].superclass.constructor.apply(this, arguments);
   };
