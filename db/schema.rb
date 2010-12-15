@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20101214183911) do
   end
 
   create_table "ontologies", :id => false, :force => true do |t|
+    t.integer "ontology_id",           :null => false
     t.integer "bioportal_ontology_id", :null => false
   end
 

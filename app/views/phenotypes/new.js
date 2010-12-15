@@ -1,3 +1,5 @@
+require ('ontologies/terms/combo_box')
+
 View('Phenotypes.New', {
   components: [
     new Ext.form.FormPanel({
@@ -51,23 +53,8 @@ View('Phenotypes.New', {
       border: false,
       hidden: true,
       items: [
-        new Ext.form.ComboBox({
-          fieldLabel: 'Entity',
-          forceSelection: true,
-          displayField: 'contents',
-          minChars: 0,
-          typeAhead: true,
-          valueField: 'conceptIdShort',
-          store: new Ext.data.JsonStore({
-            autoDestroy: true,
-            remoteSort: true,
-            root: 'terms',
-            idProperty: 'conceptIdShort',
-            fields: [ 'conceptIdShort', 'contents' ],
-            url: '/ontologies/1107/terms/search',
-            restful: true,
-            totalProperty: 'totalCount'
-          })
+        new Ontologies.Terms.ComboBox({
+          fieldLabel: 'Entity'
         }),
 //        new Ext.form.TextField({ fieldLabel: 'Entity' }),
         new Ext.form.Radio({

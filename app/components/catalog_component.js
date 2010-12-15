@@ -57,7 +57,7 @@ Component('CatalogComponent', {
     options.columns = columns;
 //    });
     options.loadMask = true;
-    options.title = this.model.demodulize().pluralize();
+    options.title = options.title || this.title || this.model.demodulize().pluralize();
     options.listeners || (options.listeners = {})
     options.listeners.rowclick || (options.listeners.rowclick =
       function (grid, rowIndex) {

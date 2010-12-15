@@ -1,0 +1,3 @@
+Component('SubmitterPanel', {
+  kindOf: Panel
+});

@@ -1,4 +1,5 @@
 class PhenotypesController < ApplicationController
+
   def index
     respond_to do |format|
       format.js { render js: 'index' }
@@ -6,6 +7,8 @@ class PhenotypesController < ApplicationController
   end
 
   def new
+    debugger
+    @ontology_ids = Ontology.all.collect(&:ontology_id)
     respond_to do |format|
       format.js { render js: 'new' }
     end
