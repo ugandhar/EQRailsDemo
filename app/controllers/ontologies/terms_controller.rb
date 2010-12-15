@@ -1,5 +1,3 @@
-require 'xml'
-
 module Ontologies
   class TermsController < ApplicationController
     def index
@@ -10,20 +8,26 @@ module Ontologies
           limit = (params[:limit] || 20).to_i
           start_page = (start / limit) + 1
           doc =
-            open("http://rest.bioontology.org/bioportal/virtual/ontology/#{params[:ontology_id]}/all?"+
-                 "&pagesize=#{limit}&pagenum=#{start_page}&email=cgoddard@flmnh.ufl.edu") { |f|
-              parser = XML::Parser.string(f.read)
-              parser.parse
-            }
+            Nokogiri::XML(
+              open(
+                "http://rest.bioontology.org/bioportal/virtual/ontology/#{
+                params[:ontology_id]
+                }/all?&pagesize=#{
+                limit
+                }&pagenum=#{
+                start_page
+                }&email=cgoddard@flmnh.ufl.edu"
+              )
+            )
           @terms = {
-            totalCount: doc.find('//success/data/page/numResultsTotal').first.inner_xml,
+            totalCount: doc.xpath('//success/data/page/numResultsTotal').first.content,
             terms:
-              doc.find('//success/data/page/contents/classBeanResultList/classBean').collect do |c|
+              doc.xpath('//success/data/page/contents/classBeanResultList/classBean').collect do |c|
                 {
-                 id:     c.find('id').first.try(:inner_xml),
-                 fullId: c.find('fullId').first.try(:inner_xml),
-                 label:  c.find('label').first.try(:inner_xml),
-                 type:   c.find('type').first.try(:inner_xml),
+                 id:     c.xpath('id').first.try(:content),
+                 fullId: c.xpath('fullId').first.try(:content),
+                 label:  c.xpath('label').first.try(:content),
+                 type:   c.xpath('type').first.try(:content),
                 }
               end
           }
@@ -35,17 +39,22 @@ module Ontologies
 
     def search
       doc =
-        open("http://rest.bioontology.org/bioportal/search/#{params[:query]}?email=cgoddard@flmnh.ufl.edu&ontologyids=#{params[:ontology_id]}") { |f|
-          parser = XML::Parser.string(f.read)
-          parser.parse
-        }
+        Nokogiri::XML(
+          open(
+            "http://rest.bioontology.org/bioportal/search/#{
+            params[:query]
+            }?email=cgoddard@flmnh.ufl.edu&ontologyids=#{
+            params[:ontology_id]
+            }"
+          )
+        )
       @terms = {
-        totalCount: doc.find('//success/data/page/numResultsTotal').first.inner_xml,
+        totalCount: doc.xpath('//success/data/page/numResultsTotal').first.content,
         terms:
-          doc.find('//success/data/page/contents/searchResultList/searchBean').collect do |c|
+          doc.xpath('//success/data/page/contents/searchResultList/searchBean').collect do |c|
             {
-             conceptIdShort:     c.find('conceptIdShort').first.try(:inner_xml),
-             contents:           c.find('contents').first.try(:inner_xml),
+             conceptIdShort:     c.xpath('conceptIdShort').first.try(:content),
+             contents:           c.xpath('contents').first.try(:content),
             }
           end
       }

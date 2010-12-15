@@ -1,5 +1,3 @@
-require 'xml'
-
 class OntologiesController < ApplicationController
   def index
     respond_to do |format|

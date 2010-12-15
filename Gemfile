@@ -5,7 +5,7 @@ gem 'netzke-basepack'
 gem 'ruby-debug19'
 gem 'pg'
 gem 'will_paginate'
-gem 'libxml-ruby'
+gem 'nokogiri'
 gem 'meta_where'
 
 group :development, :test do

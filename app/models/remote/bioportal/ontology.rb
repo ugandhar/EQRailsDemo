@@ -1,5 +1,3 @@
-require 'open-uri'
-
 module Remote
   module Bioportal
     class Ontology
@@ -13,16 +11,15 @@ module Remote
       class Relation < Remote::Relation
         def all
           doc =
-            open('http://rest.bioontology.org/bioportal/ontologies?email=cgoddard@flmnh.ufl.edu') do |f|
-              out = f.read
-              parser = XML::Parser.string(out)
-              parser.parse
-            end
-
-          doc.find('//success/data/list/ontologyBean').inject([]) do |acc, o|
+            Nokogiri::XML(
+              open(
+                'http://rest.bioontology.org/bioportal/ontologies?email=cgoddard@flmnh.ufl.edu'
+              )
+            )
+          doc.xpath('//success/data/list/ontologyBean').inject([]) do |acc, o|
             result =
-              { ontology_id:  o.find('ontologyId').try(:first).try(:inner_xml).try(:to_i),
-                abbreviation: o.find('abbreviation').try(:first).try(:inner_xml)
+              { ontology_id:  o.xpath('ontologyId').try(:first).try(:content).try(:to_i),
+                abbreviation: o.xpath('abbreviation').try(:first).try(:content)
               }
             acc << result if where_conditions_met(result)
             acc
