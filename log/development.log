@@ -1,0 +1,206 @@
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (0.1ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (0.4ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (0.1ms)[0m  SHOW TIME ZONE
+  [1m[36mSQL (2.8ms)[0m  [1m SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ 
+[0m
+  [1m[35mSQL (1.1ms)[0m   SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+  [1m[36mSQL (16.9ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mSQL (0.8ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to AddCharactersTable (20101207142852)
+Migrating to AddStatesTable (20101207142905)
+Migrating to CreateOntologiesTable (20101214183911)
+  [1m[36mSQL (0.9ms)[0m  [1m SELECT COUNT(*)
+ FROM pg_tables
+ WHERE tablename = 'schema_migrations'
+ 
+[0m
+  [1m[35mSQL (0.6ms)[0m   SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"schema_migrations"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+  [1m[36mSQL (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+  [1m[35mSQL (0.9ms)[0m   SELECT tablename
+ FROM pg_tables
+ WHERE schemaname = ANY (current_schemas(false))
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"characters"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (4.5ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"characters"'::regclass
+  [1m[36mSQL (0.1ms)[0m  [1mSHOW search_path[0m
+  [1m[35mSQL (9.1ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'characters'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"ontologies"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (7.9ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"ontologies"'::regclass
+  [1m[36mPK and custom sequence (1.6ms)[0m  [1m SELECT attr.attname,
+ CASE
+ WHEN split_part(def.adsrc, '''', 2) ~ '.' THEN
+ substr(split_part(def.adsrc, '''', 2),
+ strpos(split_part(def.adsrc, '''', 2), '.')+1)
+ ELSE split_part(def.adsrc, '''', 2)
+ END
+ FROM pg_class t
+ JOIN pg_attribute attr ON (t.oid = attrelid)
+ JOIN pg_attrdef def ON (adrelid = attrelid AND adnum = attnum)
+ JOIN pg_constraint cons ON (conrelid = adrelid AND adnum = conkey[1])
+ WHERE t.oid = '"ontologies"'::regclass
+ AND cons.contype = 'p'
+ AND def.adsrc ~* 'nextval'
+[0m
+  [1m[35mSQL (1.1ms)[0m   SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'ontologies'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+  [1m[36mSQL (0.6ms)[0m  [1m SELECT a.attname, format_type(a.atttypid, a.atttypmod), d.adsrc, a.attnotnull
+ FROM pg_attribute a LEFT JOIN pg_attrdef d
+ ON a.attrelid = d.adrelid AND a.attnum = d.adnum
+ WHERE a.attrelid = '"states"'::regclass
+ AND a.attnum > 0 AND NOT a.attisdropped
+ ORDER BY a.attnum
+[0m
+  [1m[35mPK and serial sequence (3.1ms)[0m   SELECT attr.attname, seq.relname
+ FROM pg_class seq,
+ pg_attribute attr,
+ pg_depend dep,
+ pg_namespace name,
+ pg_constraint cons
+ WHERE seq.oid = dep.objid
+ AND seq.relkind = 'S'
+ AND attr.attrelid = dep.refobjid
+ AND attr.attnum = dep.refobjsubid
+ AND attr.attrelid = cons.conrelid
+ AND attr.attnum = cons.conkey[1]
+ AND cons.contype = 'p'
+ AND dep.refobjid = '"states"'::regclass
+  [1m[36mSQL (1.1ms)[0m  [1m SELECT distinct i.relname, d.indisunique, d.indkey, t.oid
+ FROM pg_class t, pg_class i, pg_index d
+ WHERE i.relkind = 'i'
+ AND d.indexrelid = i.oid
+ AND d.indisprimary = 'f'
+ AND t.oid = d.indrelid
+ AND t.relname = 'states'
+ AND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN ('"$user"','public') )
+ ORDER BY i.relname
+[0m
+
+
+Started GET "/remote/bioportal" for 127.0.0.1 at 2010-12-15 15:44:21 -0500
+  [1m[36mSQL (0.3ms)[0m  [1mSHOW client_min_messages[0m
+  [1m[35mSQL (1.3ms)[0m  SET client_min_messages TO 'panic'
+  [1m[36mSQL (0.1ms)[0m  [1mSET standard_conforming_strings = on[0m
+  [1m[35mSQL (0.1ms)[0m  SET client_min_messages TO 'notice'
+  [1m[36mSQL (0.4ms)[0m  [1mSET time zone 'UTC'[0m
+  [1m[35mSQL (0.8ms)[0m  SHOW TIME ZONE
+
+ActionController::RoutingError (uninitialized constant BioportalsController):
+  
+
+Rendered /home/cgoddard/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.8ms)
+
+
+Started GET "/remote/bioportal/ontologies?_dc=1292445866506&start=0&limit=50&authenticity_token=hM%2BOTCr%2FhGAAajypgC8l9TnzBzY%2BUCylqRpY7zGtxpw%3D" for 127.0.0.1 at 2010-12-15 15:44:26 -0500
+  Processing by OntologiesController#index as JSON
+  Parameters: {"_dc"=>"1292445866506", "start"=>"0", "limit"=>"50", "authenticity_token"=>"hM+OTCr/hGAAajypgC8l9TnzBzY+UCylqRpY7zGtxpw="}
+Completed 200 OK in 1678ms (Views: 26.6ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/remote/bioportal/ontologies/1070" for 127.0.0.1 at 2010-12-15 15:44:36 -0500
+  Processing by OntologiesController#show as JS
+  Parameters: {"id"=>"1070"}
+Rendered text template (0.0ms)
+Completed 200 OK in 23ms (Views: 22.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2010-12-15 15:46:39 -0500
+  Processing by HomeController#show as HTML
+Rendered home/show.html.erb within layouts/application (198.5ms)
+Completed   in 212ms
+
+ActionView::Template::Error (No such file or directory - /home/cgoddard/Working_copies/EQRailsDemo/public/extjs/examples/ux/statusbar/StatusBar.js):
+    1: <%# title "RubyPhenex demo" %>
+    2: <%= netzke :app_component %>
+  app/views/home/show.html.erb:2:in `_app_views_home_show_html_erb__885676581_93095530_923467874'
+  app/controllers/application_controller.rb:10:in `render'
+
+Rendered /home/cgoddard/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.3ms)
+Rendered /home/cgoddard/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (7.3ms)
+Rendered /home/cgoddard/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (18.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2010-12-15 15:46:52 -0500
+  Processing by HomeController#show as HTML
+Rendered home/show.html.erb within layouts/application (43.5ms)
+Completed   in 53ms
+
+ActionView::Template::Error (No such file or directory - /home/cgoddard/Working_copies/EQRailsDemo/public/extjs/examples/ux/statusbar/StatusBar.js):
+    1: <%# title "RubyPhenex demo" %>
+    2: <%= netzke :app_component %>
+  app/views/home/show.html.erb:2:in `_app_views_home_show_html_erb__885676581_92572450_923467874'
+  app/controllers/application_controller.rb:10:in `render'
+
+Rendered /home/cgoddard/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (5.1ms)
+Rendered /home/cgoddard/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.8ms)
+Rendered /home/cgoddard/.rvm/gems/ruby-1.9.2-p0/gems/actionpack-3.0.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (18.2ms)

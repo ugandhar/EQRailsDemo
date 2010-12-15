@@ -18,7 +18,9 @@ RubyPhenex::Application.routes.draw do
 
   resource :remote do
     resource :bioportal do
-      resources :ontologies
+      resources :ontologies do
+        resources :terms, controller: 'ontologies/terms'
+      end
     end
   end
 end
