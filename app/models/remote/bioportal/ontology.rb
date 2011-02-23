@@ -17,10 +17,10 @@ module Remote
               )
             )
           doc.xpath('//success/data/list/ontologyBean').inject([]) do |acc, o|
-            result =
-              { ontology_id:  o.xpath('ontologyId').try(:first).try(:content).try(:to_i),
-                abbreviation: o.xpath('abbreviation').try(:first).try(:content)
-              }
+            result = {
+              ontology_id:  o.xpath('ontologyId').try(:first).try(:content).try(:to_i),
+              abbreviation: o.xpath('abbreviation').try(:first).try(:content)
+            }
             acc << result if where_conditions_met(result)
             acc
           end

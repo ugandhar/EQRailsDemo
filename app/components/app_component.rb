@@ -26,9 +26,7 @@ class AppComponent < Netzke::Base
           :region => 'north',
           :height => 40,
           :html => %Q{
-            <div>
-              EQ demo app
-            </div>
+            <img src='images/Phenex-small.png' width='30px' height='30px' /> Unofficial Web Phenex
           }
         },{
           :id => 'app-panel',

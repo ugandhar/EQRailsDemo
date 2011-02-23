@@ -7,11 +7,17 @@ root.TreeNavComponent.Functions = {
 
     APP.on('viewChange', function (app, view) {
 
+      var afterNavNodeAppended = function (navNode) {
+        navNode.ensureVisible()
+        navNode.select()
+        navNode.expand()
+      }
       var navNode = me.getNodeById(view.getRoute().getPath());
-      if(!navNode) { navNode = me.appendNavNodeForRoute(view.getRoute()) }
-      navNode.ensureVisible();
-      navNode.select();
-      navNode.expand();
+      if(!navNode) {
+        me.appendNavNodeForRoute(view.getRoute(), { onSuccess: afterNavNodeAppended })
+      } else {
+        afterNavNodeAppended(navNode)
+      }
     });
 
 //      me.ensureNodeVisibleForView(view);
@@ -39,24 +45,54 @@ root.TreeNavComponent.Functions = {
   // END JS METHOD
 
   // START JS METHOD
-  appendNavNodeForRoute: function (route) {
+  appendNavNodeForRoute: function (route, options) {
+    options || (options = {})
+    var me = this
     var appendedNode;
     var parentRoute = route.getParentRoute();
     var parentNode = this.getNodeById(parentRoute.getPath());
+    var afterParentAppended = function (parentNode) {
+      parentNode.expand();
+      appendedNode = me.getNodeById(route.getPath())
+      if(!appendedNode) {
+        var afterServerFetch = function (nodeConfigOpts, myOpts) {
+          appendedNode = parentNode.appendChild(me.nodeConfigForRoute(route, nodeConfigOpts))
+          myOpts.onSuccess && myOpts.onSuccess(appendedNode)
+        }
+        if(route.getPath().match(/\d+$/)) {
+          new Ajax.Request(route.getPath(), {
+            method: 'get',
+            requestHeaders: {
+              Accept: 'application/json'
+            },
+            parameters: {
+              select: [ 'id', 'label' ].join(',')
+            },
+            onSuccess: function (transport) {
+              var nodeConfigOpts = { label: Object.values(transport.responseJSON).first().label.truncate(20) }
+              afterServerFetch(nodeConfigOpts, options)
+            }
+          })
+        } else {
+          afterServerFetch({}, options)
+        }
+      } else {
+        options.onSuccess && options.onSuccess(appendedNode)
+      }
+      
+    }
     if(!parentNode) {
-      parentNode = this.appendNavNodeForRoute(parentRoute);
+      me.appendNavNodeForRoute(parentRoute, { onSuccess: afterParentAppended })
+    } else {
+      afterParentAppended(parentNode)
     }
-    parentNode.expand();
-    appendedNode = this.getNodeById(route.getPath());
-    if(!appendedNode) {
-      appendedNode = parentNode.appendChild(this.nodeConfigForRoute(route));
-    }
-    return appendedNode;
+    
   },
   // END JS METHOD
 
   // START JS METHOD
-  nodeConfigForRoute: function (route) {
+  nodeConfigForRoute: function (route, options) {
+    options || (options = {})
     var component
     var routeName = route.controller.camelize();
     if(route.action) { routeName = routeName+'.'+route.action.camelize() }
@@ -64,7 +100,7 @@ root.TreeNavComponent.Functions = {
       case 'Characters.Show':
         component = {
           id: route.path,
-          text: 'Character: ?',
+          text: 'Character: '+(options.label || '?')+'',
           children: [
             { id: route.path+'/states',
               text: 'States',
@@ -78,7 +114,7 @@ root.TreeNavComponent.Functions = {
       case 'Characters.States.Show':
         component = {
           id: route.path,
-          text: 'State: ?',
+          text: 'State: '+(options.label || '?')+'',
           children: [
             { id: route.path+'/phenotypes',
               text: 'Phenotypes',
@@ -92,7 +128,7 @@ root.TreeNavComponent.Functions = {
       case 'Phenotypes.New':
         component = {
           id: route.path,
-          text: 'New: ?',
+          text: 'New',
           children: [
             { hidden: true }
           ]

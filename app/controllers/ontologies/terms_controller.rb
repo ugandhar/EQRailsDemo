@@ -37,6 +37,11 @@ module Ontologies
       end
     end
 
+    def show
+      debugger
+      head :ok
+    end
+
     def search
       doc =
         Nokogiri::XML(
@@ -54,7 +59,8 @@ module Ontologies
           doc.xpath('//success/data/page/contents/searchResultList/searchBean').collect do |c|
             {
              conceptIdShort:     c.xpath('conceptIdShort').first.try(:content),
-             contents:           c.xpath('contents').first.try(:content),
+             ontologyId:         c.xpath('ontologyId').first.try(:content),
+             contents:           c.xpath('contents').first.try(:content)
             }
           end
       }

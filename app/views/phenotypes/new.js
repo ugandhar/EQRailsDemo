@@ -69,6 +69,9 @@ View('Phenotypes.New', {
         }),
         new Ontologies.Terms.ComboBox({
           fieldLabel: 'Within'
+        }),
+        new Ext.Button({
+          text: 'Create'
         })
       ]
     }),
@@ -84,6 +87,9 @@ View('Phenotypes.New', {
         new Ext.form.TextField({ fieldLabel: 'Count'  }),
         new Ontologies.Terms.ComboBox({
           fieldLabel: 'Within'
+        }),
+        new Ext.Button({
+          text: 'Create'
         })
       ]
     }),
@@ -101,6 +107,9 @@ View('Phenotypes.New', {
         }),
         new Ontologies.Terms.ComboBox({
           fieldLabel: 'Dependent Entity'
+        }),
+        new Ext.Button({
+          text: 'Create'
         })
       ]
     }),
@@ -120,7 +129,10 @@ View('Phenotypes.New', {
           fieldLabel: 'Dependent Entity'
         }),
         new Ext.form.TextField({ fieldLabel: 'Value' }),
-        new Ext.form.TextField({ fieldLabel: 'Unit' })
+        new Ext.form.TextField({ fieldLabel: 'Unit' }),
+        new Ext.Button({
+          text: 'Create'
+        })
       ]
     })
   ]

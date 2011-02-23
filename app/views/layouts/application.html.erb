@@ -10,9 +10,11 @@
   <script type="text/javascript">
     Routes = {};
     Routes.PATHS_TO_ROUTES =
-      '<%= raw Routes::JSON::PATHS_TO_ROUTES %>'.evalJSON();
+      '<%= raw Routes::JSON::PATHS_TO_ROUTES %>'.evalJSON()
     Routes.CONTROLLERS_ACTIONS_TO_ROUTES =
-      '<%= raw Routes::JSON::CONTROLLERS_ACTIONS_TO_ROUTES %>'.evalJSON();
+      '<%= raw Routes::JSON::CONTROLLERS_ACTIONS_TO_ROUTES %>'.evalJSON()
+    Routes.PATHNAMES_TO_ROUTES =
+      '<%= raw Routes::JSON::PATHNAMES_TO_ROUTES %>'.evalJSON()
   </script>
   <%= csrf_meta_tag %>
 </head>

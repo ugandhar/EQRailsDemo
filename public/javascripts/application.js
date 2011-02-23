@@ -92,6 +92,10 @@ Route = function (routeHash) {
   Object.extend(this, routeHash);
 }
 Object.extend(Route, {
+  forPathname: function (pathname) {
+    return new Route(Routes.PATHNAMES_TO_ROUTES[pathname.sub(/_path/, '')])
+  },
+
   forPath: function (path) {
     var nippedPath = path.sub(/^\//, '');
     var splitPath =
@@ -103,19 +107,24 @@ Object.extend(Route, {
         inject(Routes.PATHS_TO_ROUTES, function (acc, part, i) {
           return (
             part.match(/^[\d,]+$/) ?
-              i == (splitPath.size() - 1)? // is last in array
-                acc[':id'] :
-                acc[':'+splitPath[i-1].singularize()+'_id'] :
+//              i == (splitPath.size() - 1)? // is last in array
+              Object.extend(Object.clone(acc[':id']||{}), acc[':'+splitPath[i-1].singularize()+'_id']) :
+//                acc[':id'] :
+//                acc[':'+splitPath[i-1].singularize()+'_id'] :
               acc[part]
           )
         });
     return new Route(Object.extend(routeHash, { path: path }));
   },
 
-  fromControllerAction: function (controller, action) {
+  forModelAction: function (model, action) {
+    return this.forControllerAction(model.toString().underscore().pluralize(), action)
+  },
+
+  forControllerAction: function (controller, action) {
     return new Route(Routes.CONTROLLERS_ACTIONS_TO_ROUTES[controller][action])
   }
-  
+
 });
 Route.prototype = {
   getParentRoute: function () {
@@ -127,6 +136,19 @@ Route.prototype = {
 
   getPath: function () {
     return this.path
+  },
+
+  getInterpolatedPath: function (addVars) {
+    return this.path.gsub(
+      /\(?(\.)?:(\w+)\)?/,
+      function (match) {
+        return (
+          addVars[match[2]] ?
+             (match[1]||'')+addVars[match[2]] :
+             ''
+        )
+      }
+    )
   }
 }
 
