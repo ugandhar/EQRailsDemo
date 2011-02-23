@@ -1,0 +1,532 @@
+
+
+Started GET "/" for 127.0.0.1 at 2011-02-23 13:58:32 -0500
+  Processing by HomeController#show as HTML
+Rendered home/show.html.erb within layouts/application (61.8ms)
+Completed 200 OK in 67ms (Views: 66.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/javascripts/prototype.js?1292862154" for 127.0.0.1 at 2011-02-23 13:58:33 -0500
+
+ActionController::RoutingError (No route matches "/javascripts/prototype.js"):
+  
+
+Rendered /home/cgoddard/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.5ms)
+
+
+Started GET "/extjs/ext-all.js?1298482737" for 127.0.0.1 at 2011-02-23 13:58:33 -0500
+
+ActionController::RoutingError (No route matches "/extjs/ext-all.js"):
+  
+
+Rendered /home/cgoddard/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.3ms)
+
+
+Started GET "/extjs/resources/css/ext-all.css?1298482740" for 127.0.0.1 at 2011-02-23 13:58:33 -0500
+
+ActionController::RoutingError (No route matches "/extjs/resources/css/ext-all.css"):
+  
+
+Rendered /home/cgoddard/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.3ms)
+
+
+Started GET "/extjs/adapter/ext/ext-base.js?1298482739" for 127.0.0.1 at 2011-02-23 13:58:33 -0500
+
+ActionController::RoutingError (No route matches "/extjs/adapter/ext/ext-base.js"):
+  
+
+Rendered /home/cgoddard/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.3ms)
+
+
+Started GET "/extjs/resources/css/xtheme-gray.css?1298482740" for 127.0.0.1 at 2011-02-23 13:58:33 -0500
+
+ActionController::RoutingError (No route matches "/extjs/resources/css/xtheme-gray.css"):
+  
+
+Rendered /home/cgoddard/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.3ms)
+
+
+Started GET "/javascripts/rails.js?1292862154" for 127.0.0.1 at 2011-02-23 13:58:33 -0500
+
+ActionController::RoutingError (No route matches "/javascripts/rails.js"):
+  
+
+Rendered /home/cgoddard/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.4ms)
+
+
+Started GET "/netzke/ext.css" for 127.0.0.1 at 2011-02-23 13:58:33 -0500
+  Processing by NetzkeController#ext as CSS
+Rendered text template (0.0ms)
+Completed 200 OK in 28ms (Views: 26.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/extjs/examples/ux/gridfilters/css/GridFilters.css?1298482750" for 127.0.0.1 at 2011-02-23 13:58:33 -0500
+
+ActionController::RoutingError (No route matches "/extjs/examples/ux/gridfilters/css/GridFilters.css"):
+  
+
+Rendered /home/cgoddard/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.4ms)
+
+
+Started GET "/extjs/examples/ux/gridfilters/css/RangeMenu.css?1298482750" for 127.0.0.1 at 2011-02-23 13:58:33 -0500
+
+ActionController::RoutingError (No route matches "/extjs/examples/ux/gridfilters/css/RangeMenu.css"):
+  
+
+Rendered /home/cgoddard/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.4ms)
+
+
+Started GET "/netzke/ext.js" for 127.0.0.1 at 2011-02-23 13:58:33 -0500
+  Processing by NetzkeController#ext as JS
+Rendered text template (0.0ms)
+Completed 200 OK in 7ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/javascripts/application.js?1298418597" for 127.0.0.1 at 2011-02-23 13:58:33 -0500
+
+ActionController::RoutingError (No route matches "/javascripts/application.js"):
+  
+
+Rendered /home/cgoddard/.rvm/gems/ruby-1.9.2-p136/gems/actionpack-3.0.4/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2011-02-23 13:59:03 -0500
+  Processing by HomeController#show as HTML
+Rendered home/show.html.erb within layouts/application (52.3ms)
+Completed 200 OK in 60ms (Views: 59.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/netzke/ext.css" for 127.0.0.1 at 2011-02-23 13:59:03 -0500
+  Processing by NetzkeController#ext as CSS
+Rendered text template (0.0ms)
+Completed 200 OK in 48ms (Views: 36.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/netzke/ext.js" for 127.0.0.1 at 2011-02-23 13:59:03 -0500
+  Processing by NetzkeController#ext as JS
+Rendered text template (0.0ms)
+Completed 200 OK in 6ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/characters/14635/states/28075/phenotypes/new" for 127.0.0.1 at 2011-02-23 13:59:04 -0500
+  Processing by PhenotypesController#new as JS
+  Parameters: {"character_id"=>"14635", "state_id"=>"28075"}
+Rendered text template (0.0ms)
+Completed 200 OK in 1058ms (Views: 1.0ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/characters/14635?select=id%2Clabel" for 127.0.0.1 at 2011-02-23 13:59:05 -0500
+  Processing by CharactersController#show as JSON
+  Parameters: {"select"=>"id,label", "id"=>"14635"}
+Completed 200 OK in 67ms (Views: 7.1ms | ActiveRecord: 6.9ms)
+
+
+Started GET "/characters/14635/states/28075?select=id%2Clabel" for 127.0.0.1 at 2011-02-23 13:59:05 -0500
+  Processing by Characters::StatesController#show as JSON
+  Parameters: {"select"=>"id,label", "character_id"=>"14635", "id"=>"28075"}
+Completed 200 OK in 19ms (Views: 2.8ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/characters" for 127.0.0.1 at 2011-02-23 13:59:05 -0500
+  Processing by CharactersController#index as JS
+Rendered text template (0.0ms)
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/characters?_dc=1298487545578&start=0&limit=50&authenticity_token=t0fW%2BMs96lbPSgsK%2FL2tZ4TtH2uVB4IxyB21Kf%2B82wQ%3D" for 127.0.0.1 at 2011-02-23 13:59:05 -0500
+  Processing by CharactersController#index as JSON
+  Parameters: {"_dc"=>"1298487545578", "start"=>"0", "limit"=>"50", "authenticity_token"=>"t0fW+Ms96lbPSgsK/L2tZ4TtH2uVB4IxyB21Kf+82wQ="}
+Completed 200 OK in 52ms (Views: 31.6ms | ActiveRecord: 6.8ms)
+
+
+Started GET "/characters/14642" for 127.0.0.1 at 2011-02-23 13:59:08 -0500
+  Processing by CharactersController#show as JS
+  Parameters: {"id"=>"14642"}
+Rendered text template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/characters/14642?select=id%2Clabel" for 127.0.0.1 at 2011-02-23 13:59:08 -0500
+  Processing by CharactersController#show as JSON
+  Parameters: {"select"=>"id,label", "id"=>"14642"}
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/characters/14642/states" for 127.0.0.1 at 2011-02-23 13:59:11 -0500
+  Processing by Characters::StatesController#index as JS
+  Parameters: {"character_id"=>"14642"}
+Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/characters/14642/states?_dc=1298487551862&start=0&limit=50&authenticity_token=t0fW%2BMs96lbPSgsK%2FL2tZ4TtH2uVB4IxyB21Kf%2B82wQ%3D" for 127.0.0.1 at 2011-02-23 13:59:11 -0500
+  Processing by Characters::StatesController#index as JSON
+  Parameters: {"_dc"=>"1298487551862", "start"=>"0", "limit"=>"50", "authenticity_token"=>"t0fW+Ms96lbPSgsK/L2tZ4TtH2uVB4IxyB21Kf+82wQ=", "character_id"=>"14642"}
+Completed 200 OK in 69ms (Views: 1.6ms | ActiveRecord: 27.6ms)
+
+
+Started GET "/characters/14642/states/28103" for 127.0.0.1 at 2011-02-23 13:59:13 -0500
+  Processing by Characters::StatesController#show as JS
+  Parameters: {"character_id"=>"14642", "id"=>"28103"}
+Rendered text template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/characters/14642/states/28103?select=id%2Clabel" for 127.0.0.1 at 2011-02-23 13:59:13 -0500
+  Processing by Characters::StatesController#show as JSON
+  Parameters: {"select"=>"id,label", "character_id"=>"14642", "id"=>"28103"}
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/characters/14642/states/28103/phenotypes" for 127.0.0.1 at 2011-02-23 13:59:16 -0500
+  Processing by PhenotypesController#index as JS
+  Parameters: {"character_id"=>"14642", "state_id"=>"28103"}
+Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies/1158,1070,1107/terms/search?_dc=1298487562025&query=hex&authenticity_token=t0fW%2BMs96lbPSgsK%2FL2tZ4TtH2uVB4IxyB21Kf%2B82wQ%3D" for 127.0.0.1 at 2011-02-23 13:59:22 -0500
+  Processing by Ontologies::TermsController#search as JSON
+  Parameters: {"_dc"=>"1298487562025", "query"=>"hex", "authenticity_token"=>"t0fW+Ms96lbPSgsK/L2tZ4TtH2uVB4IxyB21Kf+82wQ=", "ontology_id"=>"1158,1070,1107"}
+Completed 200 OK in 597ms (Views: 20.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies/1107/terms/PATO:0001384" for 127.0.0.1 at 2011-02-23 13:59:23 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1107", "id"=>"PATO:0001384"}
+Completed 200 OK in 323ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies/1070/terms/GO:0018300" for 127.0.0.1 at 2011-02-23 13:59:23 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1070", "id"=>"GO:0018300"}
+Completed 200 OK in 321ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies//terms/" for 127.0.0.1 at 2011-02-23 13:59:24 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 1ms
+
+
+Started GET "/ontologies//terms/" for 127.0.0.1 at 2011-02-23 13:59:25 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies/1070/terms/GO:0010327" for 127.0.0.1 at 2011-02-23 13:59:25 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1070", "id"=>"GO:0010327"}
+Completed 200 OK in 320ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies/1070/terms/GO:0034327" for 127.0.0.1 at 2011-02-23 13:59:26 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1070", "id"=>"GO:0034327"}
+Completed 200 OK in 322ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies/1070/terms/GO:0010327" for 127.0.0.1 at 2011-02-23 13:59:46 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1070", "id"=>"GO:0010327"}
+Completed 200 OK in 321ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies/1070/terms/GO:0034214" for 127.0.0.1 at 2011-02-23 13:59:47 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1070", "id"=>"GO:0034214"}
+Completed 200 OK in 321ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 10.243.11.250 at 2011-02-23 14:03:43 -0500
+  Processing by HomeController#show as HTML
+Rendered home/show.html.erb within layouts/application (17.9ms)
+Completed 200 OK in 19ms (Views: 18.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/netzke/ext.css" for 10.243.11.250 at 2011-02-23 14:03:44 -0500
+  Processing by NetzkeController#ext as CSS
+Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/netzke/ext.js" for 10.243.11.250 at 2011-02-23 14:03:44 -0500
+  Processing by NetzkeController#ext as JS
+Rendered text template (0.0ms)
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 10.243.11.250 at 2011-02-23 14:03:44 -0500
+  Processing by HomeController#show as JS
+Rendered home/show.html.erb within layouts/application (19.9ms)
+Completed 200 OK in 30ms (Views: 29.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/characters" for 10.243.11.250 at 2011-02-23 14:03:53 -0500
+  Processing by CharactersController#index as JS
+Rendered text template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/characters?_dc=1298487844374&start=0&limit=50&authenticity_token=cWeI%2BW4wfw5%2BWUsT8r78d9GCiCkBXjplaM7cAfm%2F5iA%3D" for 10.243.11.250 at 2011-02-23 14:03:53 -0500
+  Processing by CharactersController#index as JSON
+  Parameters: {"_dc"=>"1298487844374", "start"=>"0", "limit"=>"50", "authenticity_token"=>"cWeI+W4wfw5+WUsT8r78d9GCiCkBXjplaM7cAfm/5iA="}
+Completed 200 OK in 48ms (Views: 29.4ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/characters/14635" for 10.243.11.250 at 2011-02-23 14:04:05 -0500
+  Processing by CharactersController#show as JS
+  Parameters: {"id"=>"14635"}
+Rendered text template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/characters/14635?select=id%2Clabel" for 10.243.11.250 at 2011-02-23 14:04:05 -0500
+  Processing by CharactersController#show as JSON
+  Parameters: {"select"=>"id,label", "id"=>"14635"}
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/characters/14635/states" for 10.243.11.250 at 2011-02-23 14:04:45 -0500
+  Processing by Characters::StatesController#index as JS
+  Parameters: {"character_id"=>"14635"}
+Rendered text template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/characters/14635/states?_dc=1298487896976&start=0&limit=50&authenticity_token=cWeI%2BW4wfw5%2BWUsT8r78d9GCiCkBXjplaM7cAfm%2F5iA%3D" for 10.243.11.250 at 2011-02-23 14:04:45 -0500
+  Processing by Characters::StatesController#index as JSON
+  Parameters: {"_dc"=>"1298487896976", "start"=>"0", "limit"=>"50", "authenticity_token"=>"cWeI+W4wfw5+WUsT8r78d9GCiCkBXjplaM7cAfm/5iA=", "character_id"=>"14635"}
+Completed 200 OK in 31ms (Views: 2.4ms | ActiveRecord: 24.7ms)
+
+
+Started GET "/characters/14635/states/28075" for 10.243.11.250 at 2011-02-23 14:04:51 -0500
+  Processing by Characters::StatesController#show as JS
+  Parameters: {"character_id"=>"14635", "id"=>"28075"}
+Rendered text template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/characters/14635/states/28075?select=id%2Clabel" for 10.243.11.250 at 2011-02-23 14:04:51 -0500
+  Processing by Characters::StatesController#show as JSON
+  Parameters: {"select"=>"id,label", "character_id"=>"14635", "id"=>"28075"}
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/characters/14635/states/28075/phenotypes" for 10.243.11.250 at 2011-02-23 14:04:55 -0500
+  Processing by PhenotypesController#index as JS
+  Parameters: {"character_id"=>"14635", "state_id"=>"28075"}
+Rendered text template (0.0ms)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/characters/14635/states?_dc=1298487910018&start=0&limit=50&authenticity_token=cWeI%2BW4wfw5%2BWUsT8r78d9GCiCkBXjplaM7cAfm%2F5iA%3D" for 10.243.11.250 at 2011-02-23 14:04:58 -0500
+  Processing by Characters::StatesController#index as JSON
+  Parameters: {"_dc"=>"1298487910018", "start"=>"0", "limit"=>"50", "authenticity_token"=>"cWeI+W4wfw5+WUsT8r78d9GCiCkBXjplaM7cAfm/5iA=", "character_id"=>"14635"}
+Completed 200 OK in 31ms (Views: 2.3ms | ActiveRecord: 24.7ms)
+
+
+Started GET "/characters/14635/states/28075/phenotypes/new" for 10.243.11.250 at 2011-02-23 14:05:32 -0500
+  Processing by PhenotypesController#new as JS
+  Parameters: {"character_id"=>"14635", "state_id"=>"28075"}
+Rendered text template (0.0ms)
+Completed 200 OK in 936ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/ontologies/1158,1070,1107/terms/search?_dc=1298488937926&query=hex&authenticity_token=cWeI%2BW4wfw5%2BWUsT8r78d9GCiCkBXjplaM7cAfm%2F5iA%3D" for 10.243.11.250 at 2011-02-23 14:22:06 -0500
+  Processing by Ontologies::TermsController#search as JSON
+  Parameters: {"_dc"=>"1298488937926", "query"=>"hex", "authenticity_token"=>"cWeI+W4wfw5+WUsT8r78d9GCiCkBXjplaM7cAfm/5iA=", "ontology_id"=>"1158,1070,1107"}
+Completed 200 OK in 541ms (Views: 12.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies/1070/terms/GO:0010327" for 10.243.11.250 at 2011-02-23 14:22:08 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1070", "id"=>"GO:0010327"}
+Completed 200 OK in 340ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:22:09 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:22:10 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies/1070/terms/GO:0010327" for 10.243.11.250 at 2011-02-23 14:22:10 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1070", "id"=>"GO:0010327"}
+Completed 200 OK in 321ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:22:17 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:22:17 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies/1070/terms/GO:0010327" for 10.243.11.250 at 2011-02-23 14:22:17 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1070", "id"=>"GO:0010327"}
+Completed 200 OK in 493ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:22:23 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:22:24 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies/1070/terms/GO:0010327" for 10.243.11.250 at 2011-02-23 14:22:24 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1070", "id"=>"GO:0010327"}
+Completed 200 OK in 319ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:22:30 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:22:30 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies/1070/terms/GO:0010327" for 10.243.11.250 at 2011-02-23 14:22:30 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1070", "id"=>"GO:0010327"}
+Completed 200 OK in 324ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:22:37 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:22:37 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies/1070/terms/GO:0010327" for 10.243.11.250 at 2011-02-23 14:22:37 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1070", "id"=>"GO:0010327"}
+Completed 200 OK in 323ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:22:43 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:22:44 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies/1070/terms/GO:0010327" for 10.243.11.250 at 2011-02-23 14:22:44 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1070", "id"=>"GO:0010327"}
+Completed 200 OK in 321ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:22:50 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:22:50 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies/1070/terms/GO:0010327" for 10.243.11.250 at 2011-02-23 14:22:50 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1070", "id"=>"GO:0010327"}
+Completed 200 OK in 318ms (Views: 0.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:22:57 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:22:57 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies/1070/terms/GO:0010327" for 10.243.11.250 at 2011-02-23 14:22:57 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1070", "id"=>"GO:0010327"}
+Completed 200 OK in 318ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:23:05 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies//terms/" for 10.243.11.250 at 2011-02-23 14:23:42 -0500
+  Processing by OntologiesController#show as JSON
+  Parameters: {"id"=>"terms"}
+Completed 406 Not Acceptable in 0ms
+
+
+Started GET "/ontologies/1070/terms/GO:0034214" for 10.243.11.250 at 2011-02-23 14:23:42 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1070", "id"=>"GO:0034214"}
+Completed 200 OK in 367ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies/1070/terms/GO:0018300" for 10.243.11.250 at 2011-02-23 14:23:42 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1070", "id"=>"GO:0018300"}
+Completed 200 OK in 322ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies/1107/terms/PATO:0001384" for 10.243.11.250 at 2011-02-23 14:23:43 -0500
+  Processing by Ontologies::TermsController#show as JSON
+  Parameters: {"ontology_id"=>"1107", "id"=>"PATO:0001384"}
+Completed 200 OK in 340ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies" for 10.243.11.250 at 2011-02-23 14:26:54 -0500
+  Processing by OntologiesController#index as JS
+Rendered text template (0.0ms)
+Completed 200 OK in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/ontologies?_dc=1298489225907&start=0&limit=50&authenticity_token=cWeI%2BW4wfw5%2BWUsT8r78d9GCiCkBXjplaM7cAfm%2F5iA%3D" for 10.243.11.250 at 2011-02-23 14:26:54 -0500
+  Processing by OntologiesController#index as JSON
+  Parameters: {"_dc"=>"1298489225907", "start"=>"0", "limit"=>"50", "authenticity_token"=>"cWeI+W4wfw5+WUsT8r78d9GCiCkBXjplaM7cAfm/5iA="}
+Completed 200 OK in 970ms (Views: 3.1ms | ActiveRecord: 0.3ms)

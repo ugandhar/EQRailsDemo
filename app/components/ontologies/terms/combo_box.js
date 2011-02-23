@@ -18,12 +18,39 @@ Component('Ontologies.Terms.ComboBox', {
                 id: target.readAttribute('data-concept-id')
               }), {
                 method: 'get',
-                onSuccess: function () { 
-                  alert('you have achieved success!')
+                requestHeaders: {
+                  Accept: 'application/json'
+                },
+                onSuccess: function (transport) {
+                  cbox.tooltip || (cbox.tooltip =
+                    new Ext.ToolTip({
+                      target: cbox.innerList,
+                      html: 
+                        "<div>Basic Info</div>"+
+                        "<table>"+
+                        "<tr>"+
+                        "<td valign='top'>Term:</td>"+
+                        "<td>"+transport.responseJSON.term+"</td>"+
+                        "</tr>"+
+                        "<tr>"+
+                        "<td>ID:</td>"+
+                        "<td>"+transport.responseJSON.id+"</td>"+
+                        "</tr>"+
+                        "<tr>"+
+                        "<td>Ontology:</td>"+
+                        "<td>"+transport.responseJSON.ontologyLabel+"</td>"+
+                        "</tr>"+
+                        "<tr>"+
+                        "<td valign='top'>Definition:</td>"+
+                        "<td>"+transport.responseJSON.definition+"</td>"+
+                        "</tr>"+
+                        "</table>"
+                    })
+                  )
+                  cbox.tooltip.show()
                 }
               }
             )
-            alert(event.target)
           }
           cbox.innerList.on('mouseover', cbox.mouseoverHandler)
         })

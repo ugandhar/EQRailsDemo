@@ -38,8 +38,29 @@ module Ontologies
     end
 
     def show
-      debugger
-      head :ok
+      doc =
+        Nokogiri::XML(
+          open(
+            "http://rest.bioontology.org/bioportal/virtual/ontology/#{params[:ontology_id]}?email=cgoddard@flmnh.ufl.edu"
+          )
+        )
+      version_id = doc.xpath('//success/data/ontologyBean/id').first.content
+      ontology_label = doc.xpath('//success/data/ontologyBean/displayLabel').first.content
+      doc =
+        Nokogiri::XML(
+          open(
+            "http://rest.bioontology.org/bioportal/concepts/#{version_id}?conceptid=#{params[:id]}&email=cgoddard@flmnh.ufl.edu"
+          )
+        )
+      out = {
+        term: doc.xpath('//success/data/classBean/label').first.content,
+        id: doc.xpath('//success/data/classBean/id').first.content,
+        ontologyLabel: ontology_label,
+        definition: doc.xpath('//success/data/classBean/definitions/string').first.content
+      }
+      respond_to do |format|
+        format.json { render json: out }
+      end
     end
 
     def search
